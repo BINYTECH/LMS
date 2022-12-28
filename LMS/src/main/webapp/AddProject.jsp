@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%> 
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <!DOCTYPE html>
     <html>
     <head>
@@ -44,7 +45,7 @@
     }
     .logicon {
     height: 17px;
-    margin-right: 13px;
+    margin-right: 10px;
     color: #8424bd;
     
     }
@@ -93,13 +94,24 @@
              </div>
                 <div class="container-fluid content" style=" width:fit-content;">
                     <div class="col bg-light border border-1 shadow-sm mt-3 mb-3" style="border-radius: 10px;">
-                    <form action="add" class="row g-3 needs-validation"  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
-                        <h1 align="center"  class="fs-3 fw-bold " style="color: #8424bd;">ADD PROJECT</h1>
-                          <div class="col-md-12">
+                    <form action="addproject" class="row g-3 needs-validation"  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
+                        <h1 align="center"  class="fs-3 fw-bold " style="color: #8424bd;">Add Project</h1>
+                          <div class="col-md-6">
                               <label for="name" class="form-label">Project Name</label>
                               <input type="text" class="form-control" name="name" id="name" >
                               <h6 id="vname"></h6>
                             </div>
+                            
+                             <div class="col-md-6">
+                                <label for="assigned_to" class="form-label">Assigned to</label>
+                                <select  class="form-control" name="assigned_to" id="assigned_to" >
+                                  <!-- <option value="" selected>Select employee name</option> -->
+                                  <c:forEach items="${employee}" var="employee" > 
+                                  <option value="${employee.name }">${employee.name}</option>
+    								</c:forEach>
+                                </select>
+                                <h6 id="vaassigned_to"></h6>
+                              </div>
                             
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
@@ -107,22 +119,9 @@
                                 <h6 id="vdescription"></h6>
                               </div>
 
-                              <div class="col-6">
-                                <label for="assigned_to" class="form-label">Assigned to</label>
-                                <select  class="form-control" name="assigned_to" id="assigned_to" >
-                                  <option value="" selected>Select Assigned Manager</option>
-                                  
-                                  <option value="IT">IT</option>
-                                  <option value="Accounting/Finance">Accounting and Finance</option>
-                                  <option value="Marketing">Marketing</option>
-                                  <option value="R&D"> Research and Development (R&D)</option>
-                                  <option value="Production"> Production</option>
-    
-                                </select>
-                                <h6 id="vaassigned_to"></h6>
-                              </div>
+                             
 
-                              <div class="col-6">
+                              <!-- <div class="col-6">
                                 <label for="pstatus" class="form-label">Project Status</label>
                                 <select  class="form-control" name="pstatus" id="pstatus" disabled>
     
@@ -132,7 +131,7 @@
                                   
                                 </select>
                                 <h6 id="vstatus"></h6>
-                              </div>
+                              </div> -->
 
                               <div class="col-md-6">
                                 <label for="s_date" class="form-label">Start Date</label>
@@ -157,8 +156,7 @@
 
    <!-- javascript validation -->
         <script type="text/javascript">
-        const pp=document.referrer;
-		document.getElementById("back").href=pp;   
+       
           function formValidate(){
 
             var status=true;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@ color: #f9fafb;
 }
 .logicon {
   height: 17px;
-  margin-right: 13px;
+  margin-right: 10px;
   color: #8424BC;
   }
 .content{
@@ -86,20 +87,22 @@ h6{
              </div>
            <div class="container-fluid bg-white content" style=" width:fit-content;">
         	 <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 " style="padding:70px;border-radius: 10px;">
-           
+           <form action="addevent">
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="date" class="form-control" name="e_date" id="e_date" >
-                        <h6 id="e_date"></h6>
+                        <input type="date" class="form-control" name="hdate" id="hdate" >
+                        <h6 id="hdate"></h6>
                       </div>
                       <div class="col-md-4">
-                        <input type="text" class="form-control" name="e_desc" id="e_desc" placeholder="event name">
-                        <h6 id="e_desc"></h6>
+                        <input type="text" class="form-control" name="hname" id="hname" placeholder="event name">
+                        <h6 id="hname"></h6>
                       </div>
                       <div class="col-md-4">
-                    <button class="btn text-white" style=" border-radius:20px;background-color: #8424BC;">Add Event</button>
+                    <input type="submit" class="btn text-white" value="Add Event"style=" border-radius:20px;background-color: #8424BC;">
                 </div>
                 </div> 
+                <hr>
+               </form>
                 <div>
                     <h3 class="my-4" style="color:#8424BC">Holiday's List</h3>
                     <table class="table table-striped" >
@@ -109,133 +112,27 @@ h6{
                         <th >Holiday</th>
                         <th >Day</th>
                       </tr>
-                    </thead>
-                    <tbody>
+					</thead>
+					<tbody>
+                    <c:forEach items="${holiday}" var="holiday" > 
+                    
                       <tr>
-                        <td >1 January</td>
-                        <td>New Year's Day</td>
-                        <td>Sunday</td>
+                        <td >${holiday.hdate}</td>
+                        <td>${holiday.hname}</td>
+                        <td>${holiday.hday}</td>
                       </tr>
-                      <tr>
-                        <td>14 January</td>
-                        <td>Sankranthi</td>
-                        <td>Saturday</td>
-                      </tr>
-                      <tr>
-                        <td>15 January</td>
-                        <td>Pongal</td>
-                        <td>Sunday</td>
-                      </tr>
-                      <tr>
-                        <td>26 January</td>
-                        <td>Republic Day</td>
-                        <td>Thrusday</td>
-                      </tr>
-                      
-                      <tr>
-                        <td>18 February</td>
-                        <td>Maha Shivaratri</td>
-                        <td>Saturday</td>
-                      </tr>
-                      <tr>
-                        <td>8 March</td>
-                        <td>Holi</td>
-                        <td>Wednesday</td></tr>
-                      </tr>
-                      <tr>
-                        <td>22 March</td>
-                        <td>Gudi Padwa</td>
-                        <td>Wednesday</td>
-                      </tr>
-                       <tr>
-                        <td>30 March</td>
-                        <td>Ram Navami</td>
-                        <td>Thrusday</td>
-                      </tr>
-                      <tr>
-                        <td>4 April</td>
-                        <td>Mahavir Jayanti</td>
-                        <td>Tuesday</td>
-                      </tr>
-                      <tr>
-                        <td>7 April</td>
-                        <td>Good Friday</td>
-                        <td>Friday</td>
-                      </tr>
-                      
-                      <tr>
-                        <td>5 May</td>
-                        <td>Buddha Purnima</td>
-                        <td>Friday</td>
-                      </tr>
-                      <tr>
-                        <td>29 June</td>
-                        <td>Bakrid</td>
-                        <td>Thrusday</td>
-                      </tr>
-                      <tr>
-                        <td>29 July</td>
-                        <td>Muharram</td>
-                        <td>Saturday</td>
-                      </tr>
-                         
-                      <tr>
-                        <td>15 August</td>
-                        <td>Independence Day</td>
-                        <td>Monday</td>
-                      </tr>
-                      <tr>
-                        <td>31 August</td>
-                        <td>Raksha Bandhan</td>
-                        <td>Thrusday</td>
-                      </tr>
-                      <tr>
-                        <td>7 September</td>
-                        <td>Janmashtami</td>
-                        <td>Thrussday</td>
-                      </tr>
-                      <tr>
-                        <td>19 September</td>
-                        <td>Ganesh Chaturthi</td>
-                        <td>Tuesday</td>
-                      </tr>
-                      <tr>
-                        <td>2 October</td>
-                        <td>Gandhi Jayanti</td>
-                        <td>Monday</td>
-                      </tr>
-                      <tr>
-                        <td>23 October</td>
-                        <td>Maha Navami</td>
-                        <td>Monday</td>
-                      </tr>
-                      <tr>
-                        <td>12 November</td>
-                        <td>Diwali</td>
-                        <td>Sunday</td>
-                      </tr>
-                      <tr>
-                        <td>27 November</td>
-                        <td>Guru Nanak Jayanti</td>
-                        <td>Monday</td>
-                      </tr>
-                      <tr>
-                        <td>25 December</td>
-                        <td>Christmas Day</td>
-                        <td>Monday</td>
-                      </tr>
+                      </c:forEach>
                     </tbody>
                     </table>
                       </div>
             </div>
         </div>
         </div>
-    </div>
+  
 
     <!-- javascript validation -->
     <script type="text/javascript">
-    const pp=document.referrer;
-	document.getElementById("back").href=pp;   
+   
       </script> 
     
 

@@ -1,11 +1,10 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <!DOCTYPE html>
     <html>
     <head>
     <meta charset="ISO-8859-1">
-    <title>Dashboard</title>
+    <title>Update details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -94,35 +93,51 @@
             <div class="container-fluid bg-white content" style=" width:fit-content;">
                     <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 " style="border-radius: 10px;">
                         <!-- Form for add employee -->
-                    <form action="addemp" class="row g-3 "  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
-                        <h1 align="center" class="fs-3 fw-bold" style="color: #8424BC" >Add Employee</h1>
-                          <div class="col-md-12">
+                    <form action="update" class="row g-3 "  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
+                        <h1 align="center" class="fs-3 fw-bold" style="color: #8424BC" >Update Employee</h1>
+                          
+                          <div class="col-md-6">
+                              <label for="empid" class="form-label">Employee ID</label>
+                              <input type="number" class="form-control" name="empid" id="empid" value="${employee.empid }" readonly="readonly">
+                              
+                            </div>
+                          <div class="col-md-6">
+                              <label for="username" class="form-label">Employee Username</label>
+                              <input type="text" class="form-control" name="username" id="username" value="${employee.username }" readonly="readonly">
+                              
+                            </div>
+                          <div class="col-md-6">
                               <label for="name" class="form-label">Full Name</label>
-                              <input type="text" class="form-control" name="name" id="name">
+                              <input type="text" class="form-control" name="name" id="name" value="${employee.name }">
                               <h6 id="vname"></h6>
                             </div>
                            
                           <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email">
+                            <input type="email" class="form-control" name="email" id="email" value="${employee.email }">
                             <h6 id="vemail"></h6>
                           </div>
                           <div class="col-md-6">
                             <label for="mobile" class="form-label">Mobile No</label>
-                            <input type="number" class="form-control" name="mobile" id="mobile">
+                            <input type="number" class="form-control" name="mobile" id="mobile" value="${employee.mobile }">
                             <h6 id="vmobile"></h6>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" name="dob" id="dob" value="${employee.dob }">
+                            <h6 id="vdob"></h6>
                           </div>
                           <div class="col-md-6 mt-6 d-flex">
                             <label for="gender" class="form-label">Gender </label>
                             <div>
                             <div class="form-check ms-3">
-                              <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value="Male" checked>
+                              <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value="Male" ${employee.gender=='Male'?'checked':''}>
                               <label class="form-check-label" for="flexRadioDefault1">
                                Male
                               </label>
                             </div>
                             <div class="form-check ms-3">
-                              <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value="Female" >
+                              <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value="Female" ${employee.gender=='Female'?'checked':''} >
                               <label class="form-check-label" for="flexRadioDefault2">
                                 Female
                               </label>
@@ -130,45 +145,27 @@
                           </div>
                           <h6 id="vgender"></h6>
                           </div>
-                          <div class="col-md-6">
-                            <label for="dob" class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" name="dob" id="dob">
-                            <h6 id="vdob"></h6>
-                          </div>
-                          
                           
                           <div class="col-md-6">
                             <label for="doj" class="form-label">Date of Joining</label>
-                            <input type="date" class="form-control" name="doj" id="doj" >
+                            <input type="date" class="form-control" name="doj" id="doj" value="${employee.doj }" >
                             <h6 id="vdoj"></h6>
                           </div>
-                          
-                          <div class="col-6">
+                           <div class="col-6">
                             <label for="designation" class="form-label">Designation</label>
                             <select  class="form-control" name="designation" id="designation" >
-                              <option value="" selected>select designation</option>
-                         		
-                              <option value="Developer">Developer</option>
+                              <option value="${employee.designation}" selected>${employee.designation}</option>
+                             <option value="Developer">Developer</option>
                               <option value="Analyst">Analyst</option>
                                 <option value="Tester">Tester</option>
-                           
                             </select>
                             <h6 id="vdesignation"></h6>
                           </div>
+                          
                           <div class="col-6">
-                            <label for="rp" class="form-label">Reporting Person</label>
-                            <select  class="form-control" name="rp" id="rp" >
-                              <option value="" selected>select reporting person</option>
-                         	 <c:forEach items="${employee}" var="employee" > 
-                                  <option value="${employee.name }">${employee.name}</option>
-    								</c:forEach>
-                            </select>
-                            <h6 id="vrp"></h6>
-                          </div>
-                          <div class="col-6">
-                            <label for="role" class="form-label">employee role</label>
+                            <label for="role" class="form-label"> Role</label>
                             <select  class="form-control" name="role" id="role" >
-                              <option value="" selected>select role</option>
+							 <option value="${employee.role}" selected>${employee.role}</option>
                          	  <option value="Manager" >Manager</option>
                          	 <option value="Employee" >Employee</option>
                             </select>
@@ -176,13 +173,13 @@
                           </div>
                           <div class="col-12">
                             <label for="address" class="form-label">Address</label>
-                            <textarea  class="form-control" name="address" id="address" placeholder="1234 Main St"></textarea>
+                            <textarea  class="form-control" name="address" id="address" placeholder="1234 Main St" >${employee.address }</textarea>
                             <h6 id="vaddress"></h6>
                           </div>
                           <div class="col-md-4">
                             <label for="state" class="form-label">State</label>
                             <select id="state" name="state" class="form-select">
-                            <option value="" selected>select state</option>
+                            <option value="${employee.state}" selected>${employee.state}</option>
                               <option value="Andhra Pradesh">Andhra Pradesh</option>
 			                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
 			                        <option value="Assam">Assam</option>
@@ -224,22 +221,20 @@
                             </div>
                           <div class="col-md-4">
                             <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" name="city" id="city">
+                            <input type="text" class="form-control" name="city" id="city" value="${employee.city }">
                             <h6 id="vcity"></h6>
                           </div>
                           
                           
                           <div class="col-md-4">
                             <label for="zip" class="form-label">Zip</label>
-                            <input type="number" class="form-control" name="zip" id="zip">
+                            <input type="number" class="form-control" name="zip" id="zip" value="${employee.zip }">
                             <h6 id="vzip"></h6>
                           </div>
                           
                           <div class="col-12 d-flex justify-content-end">
-                            <input type="submit" class="btn text-white w-25 fw-bold"  style="font-size:1.1rem;background-color:#8424BD;border-radius: 25px;" value="Add">
+                            <input type="submit" class="btn text-white w-25 fw-bold"  style="font-size:1.1rem;background-color:#8424BD;border-radius: 25px;" value="Update">
                           </div>
-                          
-                          
                         </form>
                     </div>
                 </div>
@@ -250,7 +245,8 @@
        <!-- javascript validation -->
        <script type="text/javascript">
 		
-      
+       const pp=document.referrer;
+		document.getElementById("back").href=pp;   
 		
 	
         function formValidate(){
@@ -264,7 +260,6 @@
           var add1=document.forms["addForm"]["address"].value;
           var desiv=document.forms["addForm"]["designation"].value;
           var rolev=document.forms["addForm"]["role"].value;
-          var rpv=document.forms["addForm"]["rp"].value;
           var b= /^[A-Za-z]{1}[A-Za-z0-9._]{2,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,3}$/;
           var dob1=document.forms["addForm"]["dob"].value
           var doj1=document.forms["addForm"]["doj"].value
@@ -316,7 +311,6 @@
         
           
           var dob2=new Date(dob1);
-          
           if(dob2>maxDOB || dob1==""){
           document.getElementById("vdob").innerHTML="*age should not be less than 22";
          
@@ -337,7 +331,7 @@
          
           status=false;
           }
-          else if(doj2>dojmax ){
+         else if(doj2>dojmax ){
           document.getElementById("vdoj").innerHTML="*please enter valid doj";
          
           status=false;
@@ -352,8 +346,7 @@
           }
 
            
-        
-        
+       
           
         //designation
           
@@ -365,25 +358,6 @@
             document.getElementById("vdesignation").innerHTML="";
           }
         
-        //reporting person
-          
-          if(rpv==""){
-           document.getElementById("vrp").innerHTML="*please choose valid option";
-          
-           status=false;
-          }else{
-            document.getElementById("vrp").innerHTML="";
-          }
-        //role
-          
-          if(rolev==""){
-           document.getElementById("vrole").innerHTML="*please choose valid option";
-          
-           status=false;
-          }else{
-            document.getElementById("vrole").innerHTML="";
-          }
-        
           //address
           if(add1.length<6 || add1==""){
              document.getElementById("vaddress").innerHTML="*address should be greater than 6";	
@@ -393,6 +367,16 @@
             document.getElementById("vaddress").innerHTML="";
           }
           
+		//role
+          
+          if(rolev==""){
+           document.getElementById("vrole").innerHTML="*please choose valid option";
+          
+           status=false;
+          }else{
+            document.getElementById("vrole").innerHTML="";
+          }
+        
         
           //city
           if(cityv==""){

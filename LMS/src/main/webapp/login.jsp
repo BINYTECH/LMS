@@ -56,7 +56,7 @@ h6{
 					  </div>
 				</div>
 				<div class="  col-md-6">
-				  <form action="home.html" name="loginForm" style="padding: 50px; " onsubmit="return validateForm()">
+				  <form action="login" name="loginForm" style="padding: 50px; " onsubmit="return validateForm()">
 					<h1 class="text-xs-center fw-bold" style="color:  #8424BC; font-size:1.8rem;">Welcome Back !</h1>
                     <p class=" text-muted fs-5 fw-semibold">Login to continue</p>
 					<div class="form-floating mt-4 mb-4">

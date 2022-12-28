@@ -42,6 +42,11 @@ height: 17px;
 margin-right: 13px;
 color: #f9fafb;
 }
+ .logicon {
+    height: 17px;
+    margin-right: 10px;
+    color: #8424BC;
+    }
 .content{
 width: fit-content;
 max-height: 33rem;
@@ -59,6 +64,17 @@ h6{
   color: red;
   font-size: 12px;
 }
+ .btn-purple{
+ background-color: #8424bd;
+ color:white;
+ border-radius:20px;
+ }
+ .btn-purple:hover{
+ background-color: white;
+ color:#8424bd;
+ border:1px solid #8424bd;
+ border-radius:20px;
+ }
 @media  (max-width:600px) {
   .d-none{
     display: none;
@@ -84,10 +100,10 @@ h6{
         <div >
         <div class="mt-2 d-flex justify-content-end  w-75" style="margin-left: 15%;">
         	<div class="">
-                <span class="badge p-2" style="background-color: #8424BD;border-radius: 20px"><a href="BalanceLeave.jsp" class="text-white" style="text-decoration: none;"  >Leave Balance</a>
-                </span>
-                <span class="badge p-2" style="background-color: #8424BD;border-radius: 20px"><a href="BalanceLeave.jsp" class="text-white" style="text-decoration: none;"  >Leave History</a>
-                </span>
+                <a href="BalanceLeave.jsp" class=" btn btn-purple  " style="text-decoration: none; font-size: 1.1rem;border-radius: 25px"  >Leave Balance</a>
+                
+                <a href="BalanceLeave.jsp" class="btn btn-purple  " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px"  >Leave History</a>
+                
             </div>
 		</div>
         <div class="mt-4" style="float:left;">
@@ -96,8 +112,20 @@ h6{
              </div>
             <div class="container-fluid content" style=" width:fit-content;">
                      <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 scroll1 " style="padding:10px 70px;border-radius: 10px;">
-                    <form action="add" class="row g-3 needs-validation"  name="addForm" style="padding: 20px; padding-top: 0;" onsubmit="return formValidate()">
+                    <form action="appleave" class="row g-3 needs-validation"  name="addForm" style="padding: 20px; padding-top: 0;" onsubmit="return formValidate()">
                         <h1 align="center" style="color: #8424BC;">Apply Leave</h1>
+                        
+                        <div class="col-md-6">
+                              <label for="empid" class="form-label">Employee ID</label>
+                              <input type="number" class="form-control" name="empid" id="empid" >
+                              
+                            </div>
+                          <div class="col-md-6">
+                              <label for="name" class="form-label">Employee Name</label>
+                              <input type="text" class="form-control" name="name" id="name"  >
+                              
+                            </div>
+                        
                         <div class="col-12">
                             <label for="lname" class="form-label">Leave Reason</label>
                             <select  class="form-control" name="lname" id="lname" >
@@ -115,12 +143,7 @@ h6{
                             <h6 id="vlname"></h6>
                           </div>
                             
-                            <div class="col-12">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea  class="form-control" name="message" id="message" placeholder=""></textarea>
-                                <h6 id="vmessage"></h6>
-                              </div>
-
+                          
 
                               <div class="col-md-6">
                                 <label for="t_date" class="form-label">Start Date</label>
@@ -137,7 +160,7 @@ h6{
 
                               <div class="col-md-6">
                                 <label for="tdays" class="form-label">Total Leave Days</label>
-                                <input type="number" class="form-control" name="tdays" id="tdays" disabled>
+                                <input type="number" class="form-control" name="tdays" id="tdays" readonly="readonly">
                                 <h6 id="vtdays"></h6>
                               </div>
 
@@ -156,7 +179,7 @@ h6{
 
     <!-- javascript validation -->
     <script type="text/javascript">
-   		 const pp=document.referrer;
+   		const pp=document.referrer;
    		document.getElementById("back").href=pp;   
         function getTDays(){
          
@@ -213,7 +236,7 @@ h6{
             document.getElementById("vt_date").innerHTML="*please enter date";
             status=false;
             }
-        else if(to1<=today){
+        else if(to1<today){
             document.getElementById("vt_date").innerHTML="*date should not be previous";
             status=false;
         }

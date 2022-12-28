@@ -44,7 +44,7 @@ color: #f9fafb;
 }
 .logicon {
   height: 17px;
-  margin-right: 13px;
+  margin-right: 10px;
   color: #8424BC;
   }
 .content{

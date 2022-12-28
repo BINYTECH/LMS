@@ -107,12 +107,7 @@ h6{
           <div class="container-fluid bg-white content " style=" width:fit-content; ">
         	 <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 p-2  " style=" width: 800px; border-radius: 10px;">
            
-                <div class="d-flex justify-content-end mb-3">
-                   
-                    <button class="btn btn-purple" >Pending</button>
-                    <button class="btn btn-purple ms-1" >Approved</button>
-                    <button class="btn  btn-purple ms-1" >Rejected</button>
-                </div> 
+               
                 
                 <div>
                     <table class="table">
@@ -124,8 +119,6 @@ h6{
                             <th class="col">Start Date</th>
                             <th class="col">End Date</th>
                             <th class="col">Duration</th>
-                             <th class="col">Status</th>
-                              <th class="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -139,11 +132,9 @@ h6{
                               <td>${leave.tdays}</td>
                              
                             <td >${leave.status}</td>
-                             
-                            <td><a href="#" id="approve"  ><i class="bi bi-check-square icn app"  ></i></a>
-                                <a href="#" id="reject" ><i class="bi bi-x-square icn rej" ></i></a></td>
                           </tr>
                           </c:forEach>
+                          
                         </tbody>
                       </table>
                       </div>
@@ -154,7 +145,8 @@ h6{
 
     <!-- javascript validation -->
     <script type="text/javascript">
-   
+    const pp=document.referrer;
+	document.getElementById("back").href=pp;   
       </script> 
     
 

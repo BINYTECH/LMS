@@ -78,20 +78,15 @@ h6{
 }
 .logicon {
   height: 17px;
-  margin-right: 13px;
+  margin-right: 10px;
   color: #8424BC;
   }
  .btn-purple{
  background-color: #8424bd;
  color:white;
- border-radius:20px;
+ 
  }
- .btn-purple:hover{
- background-color: white;
- color:#8424bd;
- border:1px solid #8424bd;
- border-radius:20px;
- }
+
 </style>
 </head>
 
@@ -121,53 +116,94 @@ h6{
 									<th class="col"></th>
 
 								</tr>
-								<%-- <c:forEach items="${employees}" var="employee"> --%>
+								<c:forEach items="${employee}" var="employee" varStatus="emp"> 
 								<tr>
-									<th>111</th>
-									<td>Akash</td>
-									<td>Akash123</td>
-									<td>1234567890</td>
-									<td>15-01-2023</td>
-									<th><a style="color: #3d8bfd;"
-										href="employeedetails?emp_id=<c:out value='${employee.emp_id }'/>"><i
-											class="bi bi-person-lines-fill " style="color: #052c65;"></i></a>
-									</th>
-									<th><a style="color: #3d8bfd;" href="delete?emp_id=<c:out value='${employee.emp_id }'/>" onclick="alert()"><i
-											class="bi bi-trash3-fill " style="color: #052c65;"></i></a></th>
-									
-									<!-- <th><a style="color: #3d8bfd;" data-bs-toggle="modal"
-										data-bs-target="#exampleModal"><i
-											class="bi bi-trash3-fill " style="color: #052c65;"></i></a></th> -->
-									<%-- <td>
-										<!-- Modal -->
-										<div class="modal fade" id="exampleModal" tabindex="-1"
-											aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Are
-															you sure you want to delete?</h5>
-														<button type="button" class="btn-close"
-															data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">you are deleting this
-														employee permanently.This can't be undone.</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary"
-															data-bs-dismiss="modal">Close</button>
+									<th>${employee.empid}</th>
+									<td>${employee.name}</td>
+									<td>${employee.username}</td>
+									<td>${employee.mobile}</td>
+									<td>${employee.doj}</td>
+									<td > 
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop${emp.index}" id="#viewEmp${emp.index}">
+                                          <a><i class="bi bi-person-lines-fill mt-3 "  style="color: #052c65;"></i></a>
+                                        </button>
+  
+                                        <!-- Modal for emp details -->
+                                        <div class="modal  fade" id="staticBackdrop${emp.index }" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
 
-														<a
-															href="delete?emp_id=<c:out value='${employee.emp_id }'/>">
-															<button type="button" class="btn btn-danger">DELETE</button>
-														</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</td> --%>
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Employee Details</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                 <!-- All emp details -->
+                                                <div class="modal-body " style="height:70vh;" >
+                                                 <div class="container row  p-2 mb-2 " style="">
+                                                   
+                                                    <div class="col p-2 ms-2">
+                                                        <h5>Name: <span>${employee.name}</span></h5>
+                                                        <h5>Email: <span>${employee.email}</span></h5>
+                                                        <h5>Phone : <span>${employee.mobile}</span></h5>
+                                                        <h5>Date of Birth: <span>${employee.dob}</span></h5>
+                                                        <h5>Address: <span>${employee.address}</span></h5>
+                                                    </div>
+                                                   
+                                                    <div class="col d-flex justify-content-end ">
+                                                        <img  class="rounded-circle border border-2" style="height: 110px;width: 110px;" src="" alt="image">
+                                                    </div>
+
+                                                 </div>
+
+                                                 <div class="container p-2 row  " style="">
+                                                    
+                                                    <div class="col-12 ms-2">
+                                                        
+                                                       
+                                                        <h5>Designation : <span>${employee.designation}</span></h5>
+                                                        <h5>Date of Joining: <span>${employee.doj}</span></h5>
+                                                    </div>
+                                                 </div>
+
+                                                </div>
+                                              <!-- Buttons can be further used to implement edit and other option-->
+                                                <div class="modal-footer">
+                                                
+                                                <a href="editdetails?empid=<c:out value='${employee.empid }'/>" class="btn btn-purple">Edit</a>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div></td>
+                                        <!-- model close -->
+                                        
+                                        <!-- button for delete -->
+										<td> <button type="button" class="btn p-0 " data-bs-toggle="modal" data-bs-target="#exampleModal${emp.index}" id="deletedetails${emp.index}">
+                                                    <i class="bi bi-trash3-fill " style="color: #052c65;"></i>
+                                                </button>
+											 <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal${emp.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        Are you sure want to delete the data?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <a href="delete?empid=<c:out value='${employee.empid }'/>" class="btn btn-purple">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+											
+											</td>
 								</tr>
 
-							<%-- </c:forEach> --%>
+							 </c:forEach>
 							</table>
                       </div>
             </div>
@@ -177,8 +213,7 @@ h6{
 
     <!-- javascript validation -->
     <script type="text/javascript">
-    const pp=document.referrer;
-	document.getElementById("back").href=pp;   
+      
       </script> 
     
 
