@@ -115,7 +115,7 @@ h6{
                 </div> 
                 
                 <div>
-                    <table class="table">
+                    <table class="table ">
                         <thead>
                           <tr>
                             <th class="col">Employee ID</th>
@@ -125,11 +125,13 @@ h6{
                             <th class="col">End Date</th>
                             <th class="col">Duration</th>
                              <th class="col">Status</th>
+                             <th class="col">Balance Leaves</th>
                               <th class="col">Action</th>
+                              
                           </tr>
                         </thead>
                         <tbody>
-                          <c:forEach items="${leave}" var="leave" > 
+                          <c:forEach items="${leave}" var="leave" varStatus="emp" > 
                           <tr>
                             <th >${leave.empid}</th>
                             <td>${leave.name}</td>
@@ -139,7 +141,105 @@ h6{
                               <td>${leave.tdays}</td>
                              
                             <td >${leave.status}</td>
-                             
+                              <td >
+                               <!-- Button trigger modal -->
+                                        <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop${emp.index}" id="#viewEmp${emp.index}">
+                                          <a>view</a>
+                                        </button>
+  
+                                        <!-- Modal for emp details -->
+                                        <div class="modal  fade" id="staticBackdrop${emp.index }" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Balance Leaves</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                 <!-- All emp details -->
+                                                <div class="modal-body " style="height:70vh;" >
+                                                 <div class="container row  p-2 mb-2 " style="">
+                                                   
+                                                   <div>
+								                    <table class="table">
+								                        <thead>
+								                          <tr>
+								                            
+								                            <th class="col">Leave Name</th>
+								                            <th class="col">Total Leave</th>
+								                            <th class="col">Consumed</th>
+								                            <th class="col">Pending</th>
+								                            
+								                          </tr>
+								                        </thead>
+								                        <tbody>
+								                          <tr>
+								                            
+								                            <td>Sick leave</td>
+								                            <td>15 days</td>
+								                            <td >10 days</td>
+								                            <td>${emplo.sickleave} days </td>
+								                           
+								                          </tr>
+								                          <tr>
+								                           
+								                            <td>Casual leave</td>
+								                            <td>15 days</td>
+								                            <td >10 days</td>
+								                            <td>${bleave.casualleave} days</td>
+								                          </tr>
+								                          <tr>
+								                          
+								                            <td>Personal leave</td>
+								                            <td>15 days</td>
+								                            <td >10 days</td>
+								                            <td>${bleave.personalleave}days</td>
+								                           
+								                          </tr>
+								                          <tr>
+								                          
+								                            <td>Marriage Leave</td>
+								                            <td>15 days</td>
+								                            <td >10 days</td>
+								                            <td>${bleave.maariageleave} days</td>
+								                           
+								                          </tr>
+								                          <tr>
+								                          
+								                            <td>Adoption Leave</td>
+								                            <td>30 days</td>
+								                            <td >10 days</td>
+								                            <td>${bleave.adoptionleave} days</td>
+								                           
+								                          </tr>
+								                          <tr>
+								                          
+								                            <td>Paternity Leave</td>
+								                            <td>30 days</td>
+								                            <td >10 days</td>
+								                            <td>${bleave.paternityleave} days</td>
+								                           
+								                          </tr>
+								                           <tr>
+								                          
+								                            <td>Maternity Leave</td>
+								                            <td>180 days</td>
+								                            <td >140 days</td>
+								                            <td>${bleave.maternityleave} days</td>
+								                           
+								                          </tr>
+								                        </tbody>
+								                      </table>
+								                      </div>
+
+                                                </div>
+                                             
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </td>
+
                             <td><a href="#" id="approve"  ><i class="bi bi-check-square icn app"  ></i></a>
                                 <a href="#" id="reject" ><i class="bi bi-x-square icn rej" ></i></a></td>
                           </tr>
@@ -154,7 +254,8 @@ h6{
 
     <!-- javascript validation -->
     <script type="text/javascript">
-   
+    const pp=document.referrer;
+	document.getElementById("back").href=pp;  
       </script> 
     
 

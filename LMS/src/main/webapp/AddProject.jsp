@@ -156,7 +156,8 @@
 
    <!-- javascript validation -->
         <script type="text/javascript">
-       
+        const pp=document.referrer;
+    	document.getElementById("back").href=pp;  
           function formValidate(){
 
             var status=true;

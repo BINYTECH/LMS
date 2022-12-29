@@ -16,17 +16,13 @@
          overflow: hidden; 
          background-color: white;  
     }
-    /* .nav1{
-    /* position: fixed; 
-    top: 0%;
-    width: 100%;
-    } */
+   
     .menubar {
     background-color: #343a40;
     float: left;
     padding: 0% 0% 100% 0%; 
     width: 18%;
-    /* border: 10px solid #7743DB; */
+   
     
     }
     
@@ -166,7 +162,7 @@
                             <h6 id="vrp"></h6>
                           </div>
                           <div class="col-6">
-                            <label for="role" class="form-label">employee role</label>
+                            <label for="role" class="form-label"> Role</label>
                             <select  class="form-control" name="role" id="role" >
                               <option value="" selected>select role</option>
                          	  <option value="Manager" >Manager</option>
@@ -249,13 +245,15 @@
 
        <!-- javascript validation -->
        <script type="text/javascript">
-		
+       const pp=document.referrer;
+   	document.getElementById("back").href=pp;  
       
 		
 	
         function formValidate(){
           var status=true;
           var name1=document.forms["addForm"]["name"].value;
+          var regname=/^[A-Za-z]{2,}[ ]{1}[A-Za-z]{2,}$/;
           var emailcheck=document.forms["addForm"]["email"].value;
         
           var statev=document.forms["addForm"]["state"].value;
@@ -272,8 +270,8 @@
           var num1=document.forms["addForm"]["mobile"].value
           
           //name
-          if(name1.length<3 ){
-            document.getElementById("vname").innerHTML="*name should be greater than 3 and less than 16";	
+          if(name1=="" ){
+            document.getElementById("vname").innerHTML="*please enter name";	
            
             status= false;
             
@@ -283,6 +281,11 @@
             
             status= false;
           }
+          else if(!(regname.test(name1))){
+              document.getElementById("vname").innerHTML="*please enter full name";	
+              
+              status= false;
+            }
           else{
             document.getElementById("vname").innerHTML="";
           }

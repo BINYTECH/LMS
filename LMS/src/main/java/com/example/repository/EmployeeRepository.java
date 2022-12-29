@@ -10,5 +10,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 
 	List<Employee> findByRole(String role);
 	List<Employee> findByUsername(String username);
+	Employee getReferenceByUsernameAndPassword(String username, String password);
+	List<Employee> findByRoleOrRole(String role, String role2);
 
 }

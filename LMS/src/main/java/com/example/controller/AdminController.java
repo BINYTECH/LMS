@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.model.Applyleave;
+import com.example.model.BalanceLeave;
 import com.example.model.Employee;
 
 import com.example.model.EmployeeProject;
 import com.example.model.Holidays;
+import com.example.repository.BalanceLeaveRepo;
 import com.example.repository.EmployeeRepository;
 import com.example.repository.HolidayRepository;
 import com.example.repository.LeaveRepository;
@@ -36,19 +38,13 @@ public class AdminController {
 	@Autowired
 	LeaveRepository lrepo;
 	
-	@GetMapping("/")
-	public String welcome0() {
-		return "login.jsp";
-	}
-
-	@GetMapping("/login")
-	public String welcome() {
-		return "AdminDashboard.jsp";
-	}
+	@Autowired
+	BalanceLeaveRepo balancerepo;
 	
+
 	@GetMapping("/employeeadd")
 	public ModelAndView employeeAdd() {
-		List<Employee> employee=repository.findAll();
+		List<Employee> employee=repository.findByRoleOrRole("Admin","Manager");
 		ModelAndView mv =new ModelAndView();
 		mv.setViewName("AddEmployee.jsp");
 		mv.addObject("employee",employee);
@@ -56,20 +52,30 @@ public class AdminController {
 	}
 	@GetMapping("/addemp")
 	public ModelAndView addEmployee(Employee employee) {
-		
+		BalanceLeave bleave=new BalanceLeave();
 		EmployeeService service=new EmployeeService();
 		String username=service.genrateUsername(employee.getName());
 		String password=service.genratePassword();
 		employee.setUsername(username);
 		employee.setPassword(password);
 		System.out.println(employee);
+		
 		repository.save(employee);
+		bleave.setEmpid(employee.getEmpid());
+		bleave.setAdoptionleave(30);
+		bleave.setCasualleave(15);
+		bleave.setMarriageleave(15);
+		bleave.setMaternityleave(180);
+		bleave.setPaternityleave(30);
+		bleave.setSickleave(15);
+		bleave.setPersonalleave(15);
+		balancerepo.save(bleave);
 		return new ModelAndView("/employeedetails");
 		
 	}
 	@GetMapping("/employeedetails")
 	public ModelAndView viewEmp() {
-		List<Employee> employee=repository.findAll();
+		List<Employee> employee=repository.findByRoleOrRole("Manager","Employee");
 		System.out.println(employee);
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("EmployeeDetails.jsp");
@@ -155,10 +161,12 @@ public class AdminController {
 	
 	@GetMapping("/leaveAPP")
 	public ModelAndView leaveApprovel() {
-		List<Applyleave> leave=lrepo.findAll();
+		List<Applyleave> leave=lrepo.findByRole("Manager");
+		
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("LeaveApprove.jsp");
 		mv.addObject("leave",leave);
+		
 		return mv;
 	}
 	

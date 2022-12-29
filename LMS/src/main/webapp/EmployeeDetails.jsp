@@ -111,7 +111,7 @@ h6{
 									<th class="col">Employee Name</th>
 									<th class="col">Employee Username</th>
 									<th class="col">Employee mobile</th>						
-									<th class="col">Date_Of_Joining</th>
+									<th class="col">Role</th>
 									<th  class="col" ></th>
 									<th class="col"></th>
 
@@ -122,7 +122,7 @@ h6{
 									<td>${employee.name}</td>
 									<td>${employee.username}</td>
 									<td>${employee.mobile}</td>
-									<td>${employee.doj}</td>
+									<td>${employee.role}</td>
 									<td > 
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop${emp.index}" id="#viewEmp${emp.index}">
@@ -213,7 +213,8 @@ h6{
 
     <!-- javascript validation -->
     <script type="text/javascript">
-      
+    const pp=document.referrer;
+	document.getElementById("back").href=pp;  
       </script> 
     
 

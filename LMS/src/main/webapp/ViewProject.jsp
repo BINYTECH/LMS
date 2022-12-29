@@ -109,7 +109,7 @@ h6{
 									<th  class="col" >Start Date</th>
                                     <th class="col">End Date</th>	
 									<th class="col">Assigned To</th>
-									<th class="col">Action</th>
+									
 
 								</tr>
 								<c:forEach items="${pdetails}" var="pdetails" varStatus="emp"> 
@@ -121,30 +121,9 @@ h6{
 									<td>${pdetails.e_date}</td>
 									<td>${pdetails.assigned_to}</td>
                                         
-                                        <!-- button for delete -->
-										<td> <button type="button" class="btn p-0 " data-bs-toggle="modal" data-bs-target="#exampleModal${emp.index}" id="deletedetails${emp.index}">
-                                                    <i class="bi bi-trash3-fill " style="color: #052c65;"></i>
-                                                </button>
-											 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal${emp.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                        Are you sure want to delete the data?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <a href="deleteproject?pid=<c:out value='${pdetails.pid }'/>" class="btn btn-purple">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-											
-											</td>
+                                        
+										
+											 
 								</tr>
 
 							 </c:forEach>
@@ -154,7 +133,10 @@ h6{
         </div>
         </div>
     </div>
-
+<script type="text/javascript">
+const pp=document.referrer;
+document.getElementById("back").href=pp;  
+</script>
    
 
 

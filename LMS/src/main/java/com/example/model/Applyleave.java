@@ -16,6 +16,7 @@ public class Applyleave {
 	private String t_date;
 	private String f_date;
 	private String tdays;
+	private String role;
 	private String status;
 	
 	public int getLid() {
@@ -66,11 +67,19 @@ public class Applyleave {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	@Override
 	public String toString() {
-		return "Applyleave [empid=" + empid + ", name=" + name + ", lname=" + lname + ", t_date=" + t_date + ", f_date="
-				+ f_date + ", tdays=" + tdays + ", status=" + status + "]";
+		return "Applyleave [lid=" + lid + ", empid=" + empid + ", name=" + name + ", lname=" + lname + ", t_date="
+				+ t_date + ", f_date=" + f_date + ", tdays=" + tdays + ", role=" + role + ", status=" + status + "]";
 	}
+	
 	
 	
 

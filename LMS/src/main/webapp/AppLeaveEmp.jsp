@@ -107,12 +107,12 @@ h6{
             </div>
 		</div>
         <div class="mt-4" style="float:left;">
-            <a href="ManagerDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
+            <a href="EmployeeDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
              <i class="bi bi-arrow-left-circle-fill "></i></a>
              </div>
             <div class="container-fluid content" style=" width:fit-content;">
                      <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 scroll1 " style="padding:10px 70px;border-radius: 10px;">
-                    <form action="appleave" class="row g-3 needs-validation"  name="addForm" style="padding: 20px; padding-top: 0;" onsubmit="return formValidate()">
+                    <form action="leaveemp" class="row g-3 needs-validation"  name="addForm" style="padding: 20px; padding-top: 0;" onsubmit="return formValidate()">
                         <h1 align="center" style="color: #8424BC;">Apply Leave</h1>
                         
                         <div class="col-md-6">

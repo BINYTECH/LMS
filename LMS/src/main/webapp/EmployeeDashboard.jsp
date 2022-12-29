@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%> 
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@ color: #f9fafb;
           <div class=" menubar ">
             <a href="EmployeeDashboard.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb;">
             <i class="bi bi-houses-fill icon1"></i> <span class="d-none d-md-block"> Home</span></a> 
-            <a href="ApplyLeave.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            <a href="appleaveemp?empid=<c:out value='${employee.empid }'/>" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
             <i class="bi bi-file-earmark-medical icon1"></i><span class="d-none d-md-block">Apply Leave</span></a>
             <a href="EventsList.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
             <i class="bi bi-calendar-event icon1"></i><span class="d-none d-md-block">Events</span></a>

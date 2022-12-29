@@ -132,7 +132,8 @@ h6{
 
     <!-- javascript validation -->
     <script type="text/javascript">
-   
+    const pp=document.referrer;
+	document.getElementById("back").href=pp;  
       </script> 
     
 

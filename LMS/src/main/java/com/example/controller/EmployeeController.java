@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,43 +13,33 @@ import com.example.repository.EmployeeRepository;
 import com.example.repository.LeaveRepository;
 
 @Controller
-public class ManagerController {
-	
-	@Autowired
-	LeaveRepository lrepo;
+public class EmployeeController {
 	
 	@Autowired
 	EmployeeRepository repository;
 	
+	@Autowired
+	LeaveRepository lrepo;
 	
-	
-	@GetMapping("/appleaveform")
-	public String applyLeaveform(HttpServletRequest request) {
+	@GetMapping("/appleaveemp")
+	public String applyLeaveformE(HttpServletRequest request) {
 		int empid=Integer.parseInt(request.getParameter("empid"));
 		Employee employee=repository.getReferenceById(empid);
 		request.setAttribute("employee", employee);
-		return "ApplyLeave.jsp";
+		return "AppLeaveEmp.jsp";
 	}
 	
-	@GetMapping("/appleave")
+	@GetMapping("/leaveemp")
 	public ModelAndView applyLeave(Applyleave aleave) {
-		ModelAndView mv =new ModelAndView();
+		ModelAndView mv=new ModelAndView();
 		aleave.setStatus("pending");
 		int empid=aleave.getEmpid();
 		Employee employee=repository.getReferenceById(empid);
 		aleave.setRole(employee.getRole());
 		lrepo.save(aleave);
-		mv.setViewName("ManagerDashboard.jsp");
+		mv.setViewName("EmployeeDashboard.jsp");
 		mv.addObject("employee",employee);
 		return mv;
 	}
-	@GetMapping("/leaveAppM")
-	public ModelAndView leaveApprovel() {
-		List<Applyleave> leave=lrepo.findByRole("Employee");
-		ModelAndView mv=new ModelAndView();
-		mv.setViewName("LeaveApprove.jsp");
-		mv.addObject("leave",leave);
-		return mv;
-	}
-	
+
 }
