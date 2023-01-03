@@ -85,9 +85,9 @@ h6{
     <div >
         <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
         <div class="container-fluid">
-          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboard?empid=${empid}"><b>Leave Management</b></a>
-       <div class="d-flex">
-        <a href="dashboard?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardE?empid=${empid}"><b>Leave Management</b></a>
+        <div class="d-flex">
+        <a href="dashboardE?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
                  <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>
             
              <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
@@ -106,7 +106,7 @@ h6{
             <div class="container-fluid content" style=" width:fit-content;">
             
                  <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 " style="border-radius: 10px; width: 500px;">                
-                 <form action="resetpassA" method="post" class="row g-3 needs-validation"  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
+                 <form action="resetpassemp" method="post" class="row g-3 needs-validation"  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
                     <h1 align="center" style="color: #8424BC;">Reset Password</h1>
                       <div class="col-md-12">
                           <label for="emp_id" class="form-label">Employee ID</label>
@@ -191,8 +191,6 @@ h6{
         else{
             document.getElementById("vcpass").innerHTML="";
         }
-        
-      
      
         return status;
       }

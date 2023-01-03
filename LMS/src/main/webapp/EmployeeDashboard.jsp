@@ -52,25 +52,55 @@ color: #f9fafb;
 </head>
 
 <body>
-
+ <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
 	<div>
-	 <%@ include file="nav.jsp" %>
+	  <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+        <div class="container-fluid">
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardE?empid=${empid}"><b>Leave Management</b></a>
+             <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-box-arrow-left logicon"></i><span class="" style="color: #8424BC;">Logout</span></a>
+          </div>
+      </nav>
         <div class="fbody">
             
           <div class=" menubar ">
-            <a href="EmployeeDashboard.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb;">
+            <a href="dashboardE?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb;">
             <i class="bi bi-houses-fill icon1"></i> <span class="d-none d-md-block"> Home</span></a> 
-            <a href="appleaveemp?empid=<c:out value='${employee.empid }'/>" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
-            <i class="bi bi-file-earmark-medical icon1"></i><span class="d-none d-md-block">Apply Leave</span></a>
-            <a href="EventsList.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            
+              <a href="profilee?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+           <i class="bi bi-person-square icon1"></i><span class="d-none d-md-block">My Profile</span></a>
+            
+            
+            <a href="appleaveemp?empid=${empid }" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            <i class="bi bi-file-earmark-medical icon1"></i><span class="d-none d-md-block">My Leaves</span></a>
+            
+            <a href="viewprojectemp?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            <i class="bi bi-journal-text icon1"></i><span class="d-none d-md-block">Project Details</span></a>
+            
+            <a href="vieweventsemp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
             <i class="bi bi-calendar-event icon1"></i><span class="d-none d-md-block">Events</span></a>
-            <a href="ResetPass.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            
+             <a href="resetpasse?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
              <i class="bi bi-key icon1"></i><span class="d-none d-md-block">Reset Password</span></a>   
         </div>
         <div align="center">
-           <b > Welcome to Employee Home..!</b>
+        
+           <img alt="" src="/image/Employee1.jpeg" style="width: 82%; height: 90vh;">
+           
         </div>
         </div>
 	</div>
+	<!-- cdn link sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+	if(${applyleavee}==true){
+    	swal("Success", "Leave application submitted", "success");
+    }
+	</script>
+	 <%session.setAttribute("applyleavee", false); %>
 </body>
 </html>

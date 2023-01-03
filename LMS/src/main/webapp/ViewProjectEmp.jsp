@@ -95,9 +95,9 @@ h6{
     <div >
         <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
         <div class="container-fluid">
-          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboard?empid=${empid}"><b>Leave Management</b></a>
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardE?empid=${empid}"><b>Leave Management</b></a>
         <div class="d-flex">
-         <a href="dashboard?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+         <a href="dashboardE?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
                  <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>
              <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
                  <i class="bi bi-box-arrow-left logicon"></i><span class="" style="color: #8424BC;">Logout</span></a>
@@ -121,7 +121,7 @@ h6{
 									<th class="col">Description</th>
 									<th  class="col" >Start Date</th>
                                     <th class="col">End Date</th>	
-									<th class="col">Status</th>
+									<th class="col">Assigned By</th>
 									
 
 								</tr>
@@ -132,7 +132,8 @@ h6{
 									<td>${pdetails.description}</td>
 									<td>${pdetails.s_date}</td>
 									<td>${pdetails.e_date}</td>
-									<td>${pdetails.status}</td>
+									<td>${pdetails.assigned_by}</td>
+									
                                         
                                         
 										
@@ -146,18 +147,11 @@ h6{
         </div>
         </div>
     </div>
-    
-    <!-- cdn link sweetalert -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 const pp=document.referrer;
 document.getElementById("back").href=pp;  
-
-if(${addprosuccess}==true){
-	swal("Success", "Project is added successfully", "success");
-}
 </script>
-   <%session.setAttribute("addprosuccess", false); %>
+   
 
 
 </body>

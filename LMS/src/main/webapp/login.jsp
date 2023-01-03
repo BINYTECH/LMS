@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,19 +24,19 @@ h6{
     color:green;
 }
 
-/* @media  (max-width:480px) {
-    .text-xs-center{
-        text-align: center;
-    }
-    .ms-center{
-        margin-left: 35%;
-    }
-} */
+.error{
+    color: #842029;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
 
 
 </style>
 </head>
 <body >
+		
         <nav class="navbar navbar-expand-lg shadow-lg bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand ms-5" href="#" style="color:  #8424BC;">
@@ -56,9 +57,10 @@ h6{
 					  </div>
 				</div>
 				<div class="  col-md-6">
-				  <form action="login" name="loginForm" style="padding: 50px; " onsubmit="return validateForm()">
+				  <form action="login" method="post" name="loginForm" style="padding: 50px; " onsubmit="return validateForm()">
 					<h1 class="text-xs-center fw-bold" style="color:  #8424BC; font-size:1.8rem;">Welcome Back !</h1>
                     <p class=" text-muted fs-5 fw-semibold">Login to continue</p>
+                  	<h5 style="color: red">${message}</h5>
 					<div class="form-floating mt-4 mb-4">
 						<input type="text" class="form-control" name="username" id="username" placeholder="JonhDoe123">
 						<label for="username">Username</label>
@@ -88,7 +90,8 @@ h6{
         var p= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/; */
 		const user1=document.getElementById("username").value;
 		const pass1=document.getElementById("password").value;
-
+		
+		
          
         //For username/password validation
         if(user1=="" ){
@@ -105,13 +108,14 @@ h6{
            document.getElementById("vpass").innerHTML="";     
        }
 		return status;
-
+	
 		
     }
 		
-
+	
+	
 	
 </script>
-	
+	<%session.removeAttribute("message"); %>
 </body>
 </html>

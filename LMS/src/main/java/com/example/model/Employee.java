@@ -1,15 +1,14 @@
 package com.example.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+
 
 @Entity
+
 public class Employee {
 	
 	@Id
@@ -30,10 +29,6 @@ public class Employee {
 	private String password;
 	private String role;
 	private String rp;
-	
-	@OneToOne
-	BalanceLeave bleave =new BalanceLeave();
-	
 	
 	
 	public int getEmpid() {

@@ -84,10 +84,20 @@ h6{
 </head>
 
 <body>
-
+ <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
     <div >
-       <%@ include file="nav.jsp" %>
-        <div class="fbody">
+ <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+        <div class="container-fluid">
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="#"><b>Leave Management</b></a>
+             <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-box-arrow-left logicon"></i><span class="" style="color: #8424BC;">Logout</span></a>
+          </div>
+      </nav>        
+      <div class="fbody">
              <div class="mt-4" style="float:left;">
             <a href="AdminDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
              <i class="bi bi-arrow-left-circle-fill "></i></a>
@@ -95,54 +105,98 @@ h6{
           <div class="container-fluid bg-white content" style=" width:fit-content;">
         	 <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 " style="padding:70px;padding-top:0;border-radius: 10px;">
            		<h1 align="center" style="color: #8424BC;">Balance Leave</h1>
-                 <div>
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            
-                            <th class="col">Leave Name</th>
-                            <th class="col">Total Leave</th>
-                            <th class="col">Consumed</th>
-                            <th class="col">Pending</th>
-                            
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            
-                            <td>Sick lave</td>
-                            <td>15 days</td>
-                            <td >10 days</td>
-                            <td>5</td>
-                           
-                          </tr>
-                          <tr>
-                           
-                            <td>Casual lave</td>
-                            <td>15 days</td>
-                            <td >10 days</td>
-                            <td>5</td>
-                          </tr>
-                          <tr>
+                
+                                                   
+                    <div>
+                  <table class="table">
+                      <thead>
+                        <tr>
                           
-                            <td>Personal lave</td>
-                            <td>15 days</td>
-                            <td >10 days</td>
-                            <td>5</td>
-                           
-                          </tr>
-                        </tbody>
-                      </table>
-                      </div>
+                          <th class="col">Leave Name</th>
+                          <th class="col">Total Leave</th>
+                          <th class="col">Consumed</th>
+                          <th class="col">Pending</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          
+                          <td>Sick leave</td>
+                          <td>15 days</td>
+                          <td id="sl">10 days</td>
+                          <td>${bleave.sickleave} days </td>
+                         
+                        </tr>
+                        <tr>
+                         
+                          <td>Casual leave</td>
+                          <td>15 days</td>
+                          <td id="cl">10 days</td>
+                          <td>${bleave.casualleave} days</td>
+                        </tr>
+                        <tr>
+                        
+                          <td>Personal leave</td>
+                          <td>15 days</td>
+                          <td id="pl">10 days</td>
+                          <td>${bleave.personalleave} days</td>
+                         
+                        </tr>
+                        <tr>
+                        
+                          <td>Marriage Leave</td>
+                          <td>15 days</td>
+                          <td id="ml" >10 days</td>
+                          <td>${bleave.marriageleave} days</td>
+                         
+                        </tr>
+                        <tr>
+                        
+                          <td>Adoption Leave</td>
+                          <td>30 days</td>
+                          <td id="al">10 days</td>
+                          <td>${bleave.adoptionleave} days</td>
+                         
+                        </tr>
+                        <tr>
+                        
+                          <td>Paternity Leave</td>
+                          <td>30 days</td>
+                          <td id="patl" >10 days</td>
+                          <td>${bleave.paternityleave} days</td>
+                         
+                        </tr>
+                         <tr>
+                        
+                          <td>Maternity Leave</td>
+                          <td>180 days</td>
+                          <td id="matl">140 days</td>
+                          <td>${bleave.maternityleave} days</td>
+                         
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+
+                    
             </div>
         </div>
         </div>
     </div>
 
     <!-- javascript validation -->
-    <script type="text/javascript">
+   <script type="text/javascript">
     const pp=document.referrer;
-	document.getElementById("back").href=pp;   
+	document.getElementById("back").href=pp;
+	
+	document.getElementById("sl").innerHTML=15-${bleave.sickleave}+" days";
+	document.getElementById("cl").innerHTML=15-${bleave.casualleave}+" days";
+	document.getElementById("pl").innerHTML=15-${bleave.personalleave}+" days";
+	document.getElementById("ml").innerHTML=15-${bleave.marriageleave}+" days";
+	document.getElementById("al").innerHTML=30-${bleave.adoptionleave}+" days";
+	document.getElementById("matl").innerHTML=180-${bleave.maternityleave}+" days";
+	document.getElementById("patl").innerHTML=30-${bleave.paternityleave}+" days";
       </script> 
     
 

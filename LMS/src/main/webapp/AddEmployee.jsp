@@ -5,7 +5,7 @@
     <html>
     <head>
     <meta charset="ISO-8859-1">
-    <title>Dashboard</title>
+    <title>Add Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -78,6 +78,11 @@
     </head>
     
     <body>
+     <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
          <%@ include file="nav.jsp" %>
         
     
@@ -90,7 +95,7 @@
             <div class="container-fluid bg-white content" style=" width:fit-content;">
                     <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 " style="border-radius: 10px;">
                         <!-- Form for add employee -->
-                    <form action="addemp" class="row g-3 "  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
+                    <form action="addemp?eempid=${empid}" class="row g-3 "  name="addForm" style="padding: 20px;" onsubmit="return formValidate()">
                         <h1 align="center" class="fs-3 fw-bold" style="color: #8424BC" >Add Employee</h1>
                           <div class="col-md-12">
                               <label for="name" class="form-label">Full Name</label>
@@ -234,8 +239,6 @@
                           <div class="col-12 d-flex justify-content-end">
                             <input type="submit" class="btn text-white w-25 fw-bold"  style="font-size:1.1rem;background-color:#8424BD;border-radius: 25px;" value="Add">
                           </div>
-                          
-                          
                         </form>
                     </div>
                 </div>

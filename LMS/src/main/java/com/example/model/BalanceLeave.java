@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
+
 @Entity
 public class BalanceLeave {
 	@Id
@@ -15,6 +16,9 @@ public class BalanceLeave {
 	private int paternityleave;
 	private int marriageleave;
 	private int adoptionleave;
+	
+	
+	
 	public int getEmpid() {
 		return empid;
 	}

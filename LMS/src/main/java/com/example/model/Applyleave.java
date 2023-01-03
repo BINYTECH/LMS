@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+
 @Entity
 public class Applyleave {
 	@Id
@@ -79,6 +81,7 @@ public class Applyleave {
 		return "Applyleave [lid=" + lid + ", empid=" + empid + ", name=" + name + ", lname=" + lname + ", t_date="
 				+ t_date + ", f_date=" + f_date + ", tdays=" + tdays + ", role=" + role + ", status=" + status + "]";
 	}
+	
 	
 	
 	

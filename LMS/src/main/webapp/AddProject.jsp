@@ -78,7 +78,11 @@
     </head>
     
     <body>
-    
+     <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
         <!-- <div >
         <div class="nav1"> -->
      	 <%@ include file="nav.jsp" %>
@@ -102,7 +106,7 @@
                               <h6 id="vname"></h6>
                             </div>
                             
-                             <div class="col-md-6">
+                            <%--  <div class="col-md-6">
                                 <label for="assigned_to" class="form-label">Assigned to</label>
                                 <select  class="form-control" name="assigned_to" id="assigned_to" >
                                   <!-- <option value="" selected>Select employee name</option> -->
@@ -111,9 +115,9 @@
     								</c:forEach>
                                 </select>
                                 <h6 id="vaassigned_to"></h6>
-                              </div>
+                              </div> --%>
                             
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea  class="form-control" name="description" id="description" placeholder=""></textarea>
                                 <h6 id="vdescription"></h6>
@@ -121,17 +125,7 @@
 
                              
 
-                              <!-- <div class="col-6">
-                                <label for="pstatus" class="form-label">Project Status</label>
-                                <select  class="form-control" name="pstatus" id="pstatus" disabled>
-    
-                                  <option value="Pending" selected>Pending</option>
-                                  <option value="In Progress">In Progress</option>
-                                  <option value="Completed">Completed</option>
-                                  
-                                </select>
-                                <h6 id="vstatus"></h6>
-                              </div> -->
+                             
 
                               <div class="col-md-6">
                                 <label for="s_date" class="form-label">Start Date</label>
@@ -164,8 +158,8 @@
             var name1=document.forms["addForm"]["name"].value;
             var description1=document.forms["addForm"]["description"].value;
           
-            var assigned_to1=document.forms["addForm"]["assigned_to"].value;
-            var s_date1=document.forms["addForm"]["s_date"].value;
+/*             var assigned_to1=document.forms["addForm"]["assigned_to"].value; */
+             var s_date1=document.forms["addForm"]["s_date"].value;
             var e_date1=document.forms["addForm"]["e_date"].value;
            
             
@@ -197,13 +191,13 @@
 
             //Assigned to
         
-            if(assigned_to1==""){
+          /*   if(assigned_to1==""){
              document.getElementById("vaassigned_to").innerHTML="*please choose valid option";
             
              status=false;
             }else{
               document.getElementById("vaassigned_to").innerHTML="";
-            }
+            } */
           
             //start date
             var today = new Date();	

@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,19 +92,32 @@ h6{
 </head>
 
 <body>
-
+ <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
     <div >
-    <%@ include file="nav.jsp" %>
+   <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+        <div class="container-fluid">
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardE?empid=${empid}"><b>Leave Management</b></a>
+          <div class="d-flex">
+         <a href="dashboardE?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>
+             <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-box-arrow-left logicon"></i><span class="" style="color: #8424BC;">Logout</span></a>
+         </div>
+          </div>
+      </nav>
 
         <div class="fbody">
            
         <div >
         <div class="mt-2 d-flex justify-content-end  w-75" style="margin-left: 15%;">
         	<div class="">
-                <a href="BalanceLeave.jsp" class=" btn btn-purple  " style="text-decoration: none; font-size: 1.1rem;border-radius: 25px"  >Leave Balance</a>
-                
-                <a href="BalanceLeave.jsp" class="btn btn-purple  " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px"  >Leave History</a>
-                
+                <a href="viewbalanceleave?empid=<c:out value='${employee.empid}'/>" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave Balance</a>                               
+                <a href="empbalhistoryE?empid=<c:out value='${employee.empid}'/>" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave History</a>                               
+                 
             </div>
 		</div>
         <div class="mt-4" style="float:left;">
@@ -176,7 +190,7 @@ h6{
         </div>
         </div>
     </div>
-
+	
     <!-- javascript validation -->
     <script type="text/javascript">
    		const pp=document.referrer;
@@ -204,10 +218,13 @@ h6{
           }
           to1.setDate(to1.getDate()+1);
         }
+        if(dds>=1){
+         document.getElementById("tdays").value=dds;    
+        }
+        else{
+          document.getElementById("tdays").value=null;  
+        }
         
-        document.getElementById("tdays").value=dds;    
-		 
-      
         }
       function formValidate(){
 		
@@ -216,14 +233,27 @@ h6{
         var reason=document.getElementById("lname").value;
         var t_date1=document.forms["addForm"]["t_date"].value;
         var f_date1=document.forms["addForm"]["f_date"].value; 
-        
+       
         var to1=new Date(t_date1);
         var from1=new Date(f_date1);
         var today=new Date(); 
-        var day = new Date(t_date1).getUTCDay();
+        var day3 = new Date(t_date1).getUTCDay();
         var day2 = new Date(f_date1).getUTCDay();
 
-       
+        weekend=false;
+        // tds is time difference and dds is day difference between two dates
+        //1 second=1000 milliseconds
+        var tds=from1.getTime()-to1.getTime();
+        var dds=tds/(1000*60*60*24)+1;  
+        while(to1<from1){
+          var day=to1.getDay();
+          weekend=(day==6) || (day==0);
+          if(weekend){
+           dds= dds-1
+          }
+          to1.setDate(to1.getDate()+1);
+        }
+        
 
         //leave reason
 
@@ -245,8 +275,8 @@ h6{
             document.getElementById("vt_date").innerHTML="*date should not be previous";
             status=false;
         }
-        else if([6,0].includes(day)){
-          document.getElementById("vt_date").innerHTML="please choose working day";
+        else if([6,0].includes(day3)){
+          document.getElementById("vt_date").innerHTML="*please choose working day";
           status=false;
         }
         else{
@@ -263,14 +293,59 @@ h6{
             status=false;
         }
         else if([6,0].includes(day2)){
-          document.getElementById("vf_date").innerHTML="please choose working day";
+          document.getElementById("vf_date").innerHTML="*please choose working day";
           status=false;
         }
         
+        
+            
+        else if((reason=="Sick Leave" || reason=="Casual Leave" || reason=="Personal Leave" || reason=="Marriage Leave") && dds>15){
+          document.getElementById("vf_date").innerHTML="* selected leave should be less than 15 days";
+          status=false;
+        }
+        else if((reason=="Paternity Leave" || reason=="Adoption Leave") && dds>30){
+          document.getElementById("vf_date").innerHTML="*selected leave should be less than 30 days";
+          status=false;
+        }
+        else if(reason=="Maternity Leave" && dds>180){
+          document.getElementById("vf_date").innerHTML="*selected leave should be less than 180 days";
+          status=false;
+        }
+       else{
+          document.getElementById("vf_date").innerHTML="";
+        }
+        
+        if(reason=="Maternity Leave" && dds>${bleave.maternityleave}){
+        	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.maternityleave}+" Maternity Leaves left.";
+        	status=false;
+        }
+        else if(reason=="Paternity Leave" && dds>${bleave.paternityleave}){
+        	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.paternityleave}+" "+reason+" left.";
+        	status=false;
+        }
+        else if(reason=="Adoption Leave" && dds>${bleave.adoptionleave}){
+        	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.adoptionleave}+" "+reason+" left.";
+        	status=false;
+        }
+        else if(reason=="Sick Leave" && dds>${bleave.sickleave}){
+        	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.sickleave}+" "+reason+" left.";
+        	status=false;
+        } 
+        else if(reason=="Casual Leave" && dds>${bleave.casualleave}){
+        	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.casualleave}+" "+reason+" left.";
+        	status=false;
+        }
+        else if(reason=="Personal Leave" && dds>${bleave.personalleave}){
+        	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.personalleave}+" "+reason+" left.";
+        	status=false;
+        }
+        else if(reason=="Marriage Leave" && dds>${bleave.marriageleave}){
+        	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.marriageleave}+" "+reason+" left.";
+        	status=false;
+        }
         else{
-              document.getElementById("vf_date").innerHTML="";
-              
-            }
+        	document.getElementById("vtdays").innerHTML="";
+        }
         
         
         
@@ -280,6 +355,8 @@ h6{
 
      
       </script> 
+    
+    
     
 
 

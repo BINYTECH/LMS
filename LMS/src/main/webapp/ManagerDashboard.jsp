@@ -52,27 +52,59 @@ color: #f9fafb;
 </head>
 
 <body>
-
+ <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
 	<div>
-	 <%@ include file="nav.jsp" %>
+	 <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+        <div class="container-fluid">
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardM?empid=${empid}"><b>Leave Management</b></a>
+             <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-box-arrow-left logicon"></i><span class="" style="color: #8424BC;">Logout</span></a>
+          </div>
+      </nav>
         <div class="fbody">
             
 	<div class=" menubar ">
-            <a href="ManagerDashboard.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb;">
+            <a href="dashboardM?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb;">
             <i class="bi bi-houses-fill icon1"></i> <span class="d-none d-md-block"> Home</span></a> 
-            <a href="appleaveform?empid=<c:out value='${employee.empid }'/>" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
-           <i class="bi bi-file-earmark-medical icon1"></i><span class="d-none d-md-block">Apply Leave</span></a>
-            <a href="EventsList.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
-            <i class="bi bi-calendar-event icon1"></i><span class="d-none d-md-block">Events</span></a>
+            
+             <a href="profilem?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+           <i class="bi bi-person-square icon1"></i><span class="d-none d-md-block">My Profile</span></a>
+            
+            <a href="appleaveform?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+           <i class="bi bi-file-earmark-medical icon1"></i><span class="d-none d-md-block">My Leaves</span></a>
+            
             <a href="leaveAppM" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
-            <i class="bi bi-card-checklist icon1"></i><span class="d-none d-md-block">Leave Approval</span></a>  
-            <a href="ResetPass.jsp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            <i class="bi bi-card-checklist icon1"></i><span class="d-none d-md-block">Approvals</span></a>  
+            
+             <a href="viewprojectm?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            <i class="bi bi-journal-text icon1"></i><span class="d-none d-md-block">Project Details</span></a>
+            
+             <a href="assignprojectemp?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            <i class="bi bi-journal-text icon1"></i><span class="d-none d-md-block">Assign Project </span></a>
+            
+            
+            <a href="vieweventsemp" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
+            <i class="bi bi-calendar-event icon1"></i><span class="d-none d-md-block">Events</span></a>
+            
+            <a href="resetpassm?empid=${empid}" class="list-group-item lgi list-group-item-action" style="display: flex;color:#f9fafb">
              <i class="bi bi-key icon1"></i><span class="d-none d-md-block">Reset Password</span></a>   
         </div>
         <div align="center">
-           <b > Welcome to Department Manager Home..!</b>
+			<img alt="" src="/image/Manager1.jpeg" style="width: 82%; height: 90vh;">
         </div>
         </div>
 	</div>
+	<!-- cdn link sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+	if(${applyleavem}==true){
+    	swal("Success", "Leave application submitted", "success");
+    }
+	</script>
+	 <%session.setAttribute("applyleavem", false); %>
 </body>
 </html>

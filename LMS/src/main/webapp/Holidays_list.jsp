@@ -77,6 +77,11 @@ h6{
 </head>
 
 <body>
+ <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
   <%@ include file="nav.jsp" %>
         
 
@@ -130,12 +135,18 @@ h6{
         </div>
   
 
+	<!-- cdn link sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- javascript validation -->
     <script type="text/javascript">
     const pp=document.referrer;
 	document.getElementById("back").href=pp;  
+	
+	if(${eventaddsuccess}==true){
+		swal("Event added successfully!");
+	}
       </script> 
-    
+     <%session.setAttribute("eventaddsuccess", false); %>
 
 
 </body>

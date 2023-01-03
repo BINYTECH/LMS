@@ -91,9 +91,23 @@ h6{
 </head>
 
 <body>
-
+ <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
     <div >
-     <%@ include file="nav.jsp" %>
+     <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+        <div class="container-fluid">
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboard?empid=${empid}"><b>Leave Management</b></a>
+         <div class="d-flex">
+         <a href="dashboard?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>
+          
+             <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-box-arrow-left logicon"></i><span style="color: #8424BC;">Logout</span></a>
+          </div></div>
+      </nav>
         <div class="fbody">
              <div class="mt-4" style="float:left;">
             <a href="AdminDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
@@ -110,7 +124,7 @@ h6{
 									<th class="col">Employee ID</th>
 									<th class="col">Employee Name</th>
 									<th class="col">Employee Username</th>
-									<th class="col">Employee mobile</th>						
+									<th class="col">Employee Mobile</th>						
 									<th class="col">Role</th>
 									<th  class="col" ></th>
 									<th class="col"></th>
@@ -131,7 +145,7 @@ h6{
   
                                         <!-- Modal for emp details -->
                                         <div class="modal  fade" id="staticBackdrop${emp.index }" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-xl">
+                                            <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
 
                                                 <div class="modal-header">
@@ -140,31 +154,112 @@ h6{
                                                 </div>
                                                  <!-- All emp details -->
                                                 <div class="modal-body " style="height:70vh;" >
-                                                 <div class="container row  p-2 mb-2 " style="">
-                                                   
-                                                    <div class="col p-2 ms-2">
-                                                        <h5>Name: <span>${employee.name}</span></h5>
-                                                        <h5>Email: <span>${employee.email}</span></h5>
-                                                        <h5>Phone : <span>${employee.mobile}</span></h5>
-                                                        <h5>Date of Birth: <span>${employee.dob}</span></h5>
-                                                        <h5>Address: <span>${employee.address}</span></h5>
-                                                    </div>
-                                                   
-                                                    <div class="col d-flex justify-content-end ">
-                                                        <img  class="rounded-circle border border-2" style="height: 110px;width: 110px;" src="" alt="image">
-                                                    </div>
-
-                                                 </div>
-
-                                                 <div class="container p-2 row  " style="">
-                                                    
-                                                    <div class="col-12 ms-2">
-                                                        
-                                                       
-                                                        <h5>Designation : <span>${employee.designation}</span></h5>
-                                                        <h5>Date of Joining: <span>${employee.doj}</span></h5>
-                                                    </div>
-                                                 </div>
+                                                 <div class="row content-div p-3  bg-light" >
+									                <div class="col-6 ">
+									                    <div class="d-flex justify-content-center p-4" style="height: 240px;">
+									                        <img src="/image/profile.jpg"  class="border border-1 hover-img rounded mt-2" style="height: 140px;width: 140px;"/>
+									                    </div>
+									                    
+									                    <div class="hover-box " style="height: 180px;  margin-top: 2rem">
+									                        <div class="card">
+									                            <h5 class="card-header text-purple">Basic Details</h5>
+									                            <div class="card-body p-0 ms-2">
+									                              <table class="table table-borderless">
+									                               
+									                                <tr>
+									                                    <th class="fsize">Username :</th>
+									                                    <td class="fdsize">${employee.username}</td>
+									                                </tr>
+									                                <tr>
+									                                    
+									                                    <th class="fsize"> Name :</th>
+									                                    <td class="fdsize">${employee.name}</td>
+									                                   
+									                                </tr>
+									                                <tr>
+									                                    <th class="fsize">Email :</th>
+									                                    <td class="fdsize">${employee.email}</td>
+									                                </tr>
+									                                <tr>
+									                                    <th class="fsize">Mobile No :</th>
+									                                    <td class="fdsize">${employee.mobile}</td>
+									                                </tr>
+									                                
+									                              </table>
+									                            </div>
+									                          </div>
+									                    </div>
+									
+									                    
+									                   
+									                </div>
+									                <div class="col-6 ">
+									                    <div class="card hover-box mt-2" style="">
+															<h5 class="card-header text-purple">Personal info</h5>
+															<div class="card-body">
+															  <table class="table table-borderless">
+																<tr>
+									                                <th class="fsize">Date of Birth :</th>
+																	<td class="fdsize" >${employee.dob}</td>
+									                                <th class="fsize">Gender :</th>
+																	<td class="fdsize">${employee.gender}</td>
+																	
+																</tr>
+																<tr>
+									                                <th class="fsize">Address :</th>
+																	<td class="fdsize" colspan="3">${employee.address}</td>
+																	
+																	
+																</tr>
+																<tr>
+									                                <th class="fsize">City :</th>
+																	<td class="fdsize" >${employee.city}</td>
+									                            
+																	<th class="fsize">Pin code :</th>
+																	<td class="fdsize">${employee.zip}</td>
+																</tr>
+																<tr>
+									                                <th class="fsize">State :</th>
+																	<td class="fdsize">${employee.state}</td>
+																	
+																	
+																</tr>
+															  </table>
+															</div>
+														  </div>
+									
+									                      <div class="card mt-4 hover-box" >
+															<h5 class="card-header text-purple">Work Details</h5>
+															<div class="card-body p-0 ms-2">
+															  <table class="table table-borderless">
+																<tr>
+																	<th class="fsize">Emp ID :</th>
+																	<td class="fdsize">${employee.empid}</td>
+									                            </tr>
+									                            <tr>
+									                                <th class="fsize">Date of Joining :</th>
+									                                <td class="fdsize">${employee.doj}</td>
+									                            </tr>
+																<tr>
+									                                <th class="fsize">Designation :</th>
+																	<td class="fdsize">${employee.designation}</td>
+									                            </tr>	
+																
+																<tr>
+																	
+																	<th class="fsize">Employee Type :</th>
+																	<td class="fdsize">${employee.role}</td>
+																</tr>
+																
+															  </table>
+															</div>
+														  </div>
+									                    
+									                    
+									                    
+									                    
+									                </div>
+									            </div>
 
                                                 </div>
                                               <!-- Buttons can be further used to implement edit and other option-->
@@ -194,7 +289,7 @@ h6{
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <a href="delete?empid=<c:out value='${employee.empid }'/>" class="btn btn-purple">Delete</a>
+                                                        <a href="delete?empid=<c:out value='${employee.empid }'/>&eempid=${empid}" class="btn btn-purple">Delete</a>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -210,14 +305,32 @@ h6{
         </div>
         </div>
     </div>
-
+	
+	<!-- cdn link sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- javascript validation -->
     <script type="text/javascript">
     const pp=document.referrer;
 	document.getElementById("back").href=pp;  
+	
+	
+	if(${addsuccess}==true){
+    	swal("Success", "Employee is added successfully", "success");
+    }
+	if(${deletesuccess}==true){
+    	swal("Success", "Employee is deleted successfully", "success");
+    }
+	if(${updatesuccess}==true){
+    	swal("Success", "Employee is updated successfully", "success");
+    }
+		
       </script> 
+    <%session.setAttribute("addsuccess", false); %>
+     <%session.setAttribute("deletesuccess", false); %>
+     <%session.setAttribute("updatesuccess", false); %>
     
-
+    
+	
 
 </body>
 </html>

@@ -96,9 +96,22 @@ h6{
 </head>
 
 <body>
-
+ <%
+    if(session.getAttribute("empid")==null){
+    	response.sendRedirect("login.jsp");
+    }
+    %>
     <div >
-     <%@ include file="nav.jsp" %>
+      <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+        <div class="container-fluid">
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardM?empid=${empid}"><b>Leave Management</b></a>
+        <div class="d-flex">
+         <a href="dashboardM?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>
+             <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+                 <i class="bi bi-box-arrow-left logicon"></i><span class="" style="color: #8424BC;">Logout</span></a>
+          </div></div>
+      </nav>
         <div class="fbody">
              <div class="mt-4" style="float:left;">
             <a href="AdminDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
@@ -113,18 +126,19 @@ h6{
                     <table class="table">
                         <thead>
                           <tr>
-                            <th class="col">Employee ID</th>
+                            <th class="col">Application ID</th>
                             <th class="col">Name</th>
                             <th class="col">Leave Reason</th>
                             <th class="col">Start Date</th>
                             <th class="col">End Date</th>
                             <th class="col">Duration</th>
+                           <th class="col">Status</th>
                           </tr>
                         </thead>
                         <tbody>
                           <c:forEach items="${leave}" var="leave" > 
                           <tr>
-                            <th >${leave.empid}</th>
+                            <th >${leave.lid}</th>
                             <td>${leave.name}</td>
                             <td>${leave.lname}</td>
                             <td>${leave.t_date}</td>

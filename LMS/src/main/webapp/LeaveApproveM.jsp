@@ -81,7 +81,7 @@ h6{
   margin-right: 10px;
   color: #8424BC;
   }
-.btn-purple{
+  .btn-purple{
  background-color: #8424bd;
  color:white;
  border-radius:20px;
@@ -92,6 +92,7 @@ h6{
  border:1px solid #8424bd;
  border-radius:20px;
  }
+
 </style>
 </head>
 
@@ -102,11 +103,12 @@ h6{
     }
     %>
     <div >
-     <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+      <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
         <div class="container-fluid">
-          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboard?empid=${empid}"><b>Leave Management</b></a>
-         <div class="d-flex">
-         <a href="dashboard?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardM?empid=${empid}"><b>Leave Management</b></a>
+        
+        <div class="d-flex"> 
+        <a href="dashboardM?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
                  <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>
              <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
                  <i class="bi bi-box-arrow-left logicon"></i><span class="" style="color: #8424BC;">Logout</span></a>
@@ -114,15 +116,14 @@ h6{
       </nav>
         <div class="fbody">
         <div>
-        	<div class="mt-2 d-flex justify-content-end  w-75" style="margin-left: 14%;">
-	        	<div >
-	                <a href="appleavehistory" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave History</a>                               
-	                
-	            </div>
-		  </div>
-        
+        <div class="mt-2 d-flex justify-content-end  w-75" style="margin-left: 14%;">
+        	<div >
+                <a href="appleavehistorym" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave History</a>                               
+                
+            </div>
+		</div>
              <div class="mt-4" style="float:left;">
-            <a href="AdminDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
+            <a href="#" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
              <i class="bi bi-arrow-left-circle-fill "></i></a>
              </div>
           <div class="container-fluid bg-white content " style=" width:fit-content; ">
@@ -161,18 +162,19 @@ h6{
                                  <a href="viewbalanceleave?empid=<c:out value='${leave.empid }'/>" >view</a>                               
                                         </td>
 
-                            <td><a href="approveleave?lid=<c:out value='${leave.lid }'/>&empid=<c:out value='${leave.empid }'/>" id="approve"  ><i class="bi bi-check-square icn app"  ></i></a>
-                                <a href="rejectleave?lid=<c:out value='${leave.lid }'/>" id="reject" ><i class="bi bi-x-square icn rej" ></i></a></td>
+                            <td><a href="approveleavem?lid=<c:out value='${leave.lid }'/>&empid=<c:out value='${leave.empid }'/>" id="approve"  ><i class="bi bi-check-square icn app"  ></i></a>
+                                <a href="rejectleavem?lid=<c:out value='${leave.lid }'/>" id="reject" ><i class="bi bi-x-square icn rej" ></i></a></td>
                           </tr>
                           </c:forEach>
                         </tbody>
                       </table>
                       </div>
+                      </div>
             </div>
         </div>
         </div>
-        </div>
     </div>
+	
 	<!-- cdn link sweetalert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- javascript validation -->
@@ -190,7 +192,6 @@ h6{
     
  <%session.setAttribute("approvealert", false); %> 
   <%session.setAttribute("rejectalert", false); %> 
-
 
 </body>
 </html>
