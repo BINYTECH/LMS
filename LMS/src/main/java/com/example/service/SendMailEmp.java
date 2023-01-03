@@ -42,7 +42,7 @@ public class SendMailEmp {
 		
 		mailSender.send(message);
 		System.out.println(message);
-		System.out.println("Mail Sent");
+		System.out.println("Mail Sent done");
 		}
 	
 	public void sendApplyLeave(String name,String messagebody) {
