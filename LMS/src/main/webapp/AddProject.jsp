@@ -200,7 +200,7 @@
             } */
           
             //start date
-            var today = new Date();	
+            var today = new Date().setHours(0,0,0,0);	
             var sdate=new Date(s_date1);
             
             

@@ -236,7 +236,7 @@ h6{
        
         var to1=new Date(t_date1);
         var from1=new Date(f_date1);
-        var today=new Date(); 
+        var today=new Date().setHours(0,0,0,0); 
         var day3 = new Date(t_date1).getUTCDay();
         var day2 = new Date(f_date1).getUTCDay();
 
