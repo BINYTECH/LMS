@@ -92,18 +92,18 @@ h6{
              </div>
            <div class="container-fluid bg-white content" style=" width:fit-content;">
         	 <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 " style="padding:70px;border-radius: 10px;">
-           <form action="addevent">
+           <form action="addevent" name="addForm" onsubmit="return formValidate()">
                 <div class="row">
                     <div class="col-md-4">
                         <input type="date" class="form-control" name="hdate" id="hdate" >
-                        <h6 id="hdate"></h6>
+                        <h6 id="vhdate"></h6>
                       </div>
                       <div class="col-md-4">
                         <input type="text" class="form-control" name="hname" id="hname" placeholder="event name">
-                        <h6 id="hname"></h6>
+                        <h6 id="vhname"></h6>
                       </div>
                       <div class="col-md-4">
-                    <input type="submit" class="btn text-white" value="Add Event"style=" border-radius:20px;background-color: #8424BC;">
+                    <input type="submit" class="btn text-white" value="Add Event"  style=" border-radius:20px;background-color: #8424BC;">
                 </div>
                 </div> 
                 <hr>
@@ -141,6 +141,39 @@ h6{
     <script type="text/javascript">
     const pp=document.referrer;
 	document.getElementById("back").href=pp;  
+	
+	
+	function formValidate(){
+		var eventdate=document.getElementById("hdate").value;
+		var eventname=document.getElementById("hname").value;
+		var status=true;
+	
+		//event date
+		if(eventdate==""){
+            document.getElementById("vhdate").innerHTML="*please enter date";	
+            status=false;
+		}
+		else{
+			document.getElementById("vhdate").innerHTML="";	
+		}
+		
+		//event name
+		if(eventname.length<3 ){
+            document.getElementById("vhname").innerHTML="*event name should be greater than 3 ";	
+            status= false;
+
+          }
+          else if(!(/^[A-Za-z ]+$/.test(eventname))){
+            document.getElementById("vhname").innerHTML="*event name should be character";	        
+            status= false;
+          }
+          else{
+            document.getElementById("vhname").innerHTML="";
+          }
+		return status;
+		
+	}
+	
 	
 	if(${eventaddsuccess}==true){
 		swal("Event added successfully!");

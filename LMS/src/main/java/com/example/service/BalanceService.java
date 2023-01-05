@@ -13,7 +13,7 @@ import com.example.model.BalanceLeave;
 public class BalanceService {
 
 
-	
+	// This method is use for approve leave and subtract apply leave duration from pending leaves
 	public BalanceLeave balanceL(int empid,BalanceLeave bleave,Applyleave aleave) {
 		
 		

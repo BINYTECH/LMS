@@ -227,7 +227,7 @@
             document.getElementById("ve_date").innerHTML="*project duration should not exceed 1 month";
             status=false;
             }   
-            else if(sdate>=edate){
+            else if(sdate>edate){
             document.getElementById("ve_date").innerHTML="*end date should not be less than start date";
             status=false;
             }      

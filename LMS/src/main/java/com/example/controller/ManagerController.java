@@ -47,11 +47,13 @@ public class ManagerController {
 	@Autowired
 	SendMailEmp serviceMail;
 	
+	// For redirect to dashboard
 	@GetMapping("/dashboardM")
 	public ModelAndView empDashboard() {
 	return new ModelAndView("ManagerDashboard.jsp");
 	}
 	
+	// For redirect to profile page
 	@GetMapping("/profilem")
 	public ModelAndView profileM(HttpServletRequest req) {
 		int empid=Integer.parseInt(req.getParameter("empid"));
@@ -62,6 +64,7 @@ public class ManagerController {
 		return mv;
 	}
 	
+	// For redirect to apply leave page
 	@GetMapping("/appleaveform")
 	public String applyLeaveform(HttpServletRequest request) {
 		int empid=Integer.parseInt(request.getParameter("empid"));
@@ -72,6 +75,7 @@ public class ManagerController {
 		return "ApplyLeave.jsp";
 	}
 	
+	// For apply leave
 	@GetMapping("/appleave")
 	public ModelAndView applyLeave(Applyleave aleave,HttpSession session) {
 		ModelAndView mv =new ModelAndView();
@@ -88,6 +92,8 @@ public class ManagerController {
 		mv.addObject("employee",employee);
 		return mv;
 	}
+	
+	//For redirect to approve leave page
 	@GetMapping("/leaveAppM")
 	public ModelAndView leaveApprovel() {
 		List<Applyleave> leave=lrepo.findByRoleAndStatus("Employee","pending");
@@ -97,6 +103,7 @@ public class ManagerController {
 		return mv;
 	}
 	
+	// For redirect to approve leave history
 	@GetMapping("appleavehistorym")
 	public ModelAndView appLeaveHistory(){
 		List<Applyleave> aleave=lrepo.findByRole("Employee");
@@ -106,6 +113,7 @@ public class ManagerController {
 		return mv;
 	}
 	
+	// For redirect to Manager leave history
 	@GetMapping("/empbalhistory")
 	public String empBalHistory(HttpServletRequest request){
 		int empid=Integer.parseInt(request.getParameter("empid"));
@@ -114,6 +122,8 @@ public class ManagerController {
 		return "LeaveHistory.jsp";
 		
 	}
+	
+	// For approve employee leave
 	@GetMapping("/approveleavem")
 	public ModelAndView approveLeave(HttpServletRequest request,HttpSession session) {
 		int empid=Integer.parseInt(request.getParameter("empid"));
@@ -137,6 +147,7 @@ public class ManagerController {
 		return new ModelAndView("/leaveAppM");
 	}
 	
+	// For reject employee leave
 	@GetMapping("/rejectleavem")
 	public ModelAndView rejectLeave(HttpServletRequest request,HttpSession session) {
 		int lid=Integer.parseInt(request.getParameter("lid"));
@@ -150,6 +161,7 @@ public class ManagerController {
 		return new ModelAndView("/leaveAppM");
 	}
 	
+	// For view project details
 	@GetMapping("/viewprojectm")
 	public ModelAndView viewProjectM() {
 	
@@ -160,6 +172,7 @@ public class ManagerController {
 		return mv;
 	}
 	
+	// For redirct to assign project to employee page
 	@GetMapping("/assignprojectemp")
 	public ModelAndView assignProjectEmp() {
 		
@@ -173,6 +186,7 @@ public class ManagerController {
 		return mv;
 	}
 	
+	// For assign project to employee
 	
 	@GetMapping("/empassigned")
 	public ModelAndView empAssigned(EmployeeProject project) {
@@ -186,6 +200,8 @@ public class ManagerController {
 		projectrepo.save(pdetails);
 		return new ModelAndView("/viewprojectm");
 	}
+	
+	// For view holidays
 	@GetMapping("/vieweventsemp")
 	public ModelAndView viewEventsEmp() {
 		List<Holidays> holiday=holidayRepo.findAll();
@@ -195,10 +211,13 @@ public class ManagerController {
 		return mv;
 	}
 	
+	// For redirect to reset password page
 	@GetMapping("resetpassm")
 	public ModelAndView resetPassM() {
 		return new ModelAndView("ResetPassManager.jsp");
 	}
+	
+	// For reset password
 	@PostMapping("/resetpassmanager")
 	public ModelAndView resetPassManager(HttpServletRequest req,HttpSession session)
 	{

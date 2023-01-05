@@ -1,0 +1,46 @@
+body{
+        overflow: hidden;
+        background-color: #dce8e9;
+    }
+    .nav1{
+   
+    top: 0%;
+    width: 100%;
+    }
+    .menubar {
+    background-color: #343a40;
+    float: left;
+    padding: 0% 0% 100% 0%; 
+    
+    width: 18%;
+    
+    
+    }
+    
+    .lgi {
+    background-color:  #343a40;
+    }
+    
+    .lgi:hover {
+    background-color: #0a58ca;
+    }
+    .icon1 {
+    height: 17px;
+    margin-right: 13px;
+    color: #f9fafb;
+    }
+    .content{
+    width: fit-content;
+    max-height: 33rem;
+    overflow: scroll;
+    padding: 0% 10%;
+    }
+    .content::-webkit-scrollbar{
+        display: none;
+    }
+    h6{
+      color: red;
+      font-size: 12px;
+    }
+  
+    

@@ -18,6 +18,7 @@ public class EmployeeService {
 	@Autowired
 	EmployeeRepository repository;
 	
+	// This method is genrate and return username
 	public String genrateUsername(String name) {
 		
 		String username="";
@@ -36,6 +37,8 @@ public class EmployeeService {
 		
 		return username;
 	}
+	
+	// This method is genrate password
 	public String genratePassword() {
 		boolean validPass=false;
 		char[] password = null;
@@ -72,6 +75,7 @@ public class EmployeeService {
 		return pass;
 	}
 	
+	// This method is return weekday
 	public String getWeek(String hdate) {
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	      Date date = null;

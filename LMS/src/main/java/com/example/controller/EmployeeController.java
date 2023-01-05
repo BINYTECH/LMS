@@ -39,11 +39,13 @@ public class EmployeeController {
 	@Autowired
 	SendMailEmp serviceMail;
 	
+	// For redirect to Employee Dashboard
 	@GetMapping("/dashboardE")
 	public ModelAndView empDashboard(HttpServletRequest req) {
 	return new ModelAndView("EmployeeDashboard.jsp");
 	}
 	
+	// For redirect to profile page
 	@GetMapping("/profilee")
 	public ModelAndView profileE(HttpServletRequest req) {
 		int empid=Integer.parseInt(req.getParameter("empid"));
@@ -54,6 +56,7 @@ public class EmployeeController {
 		return mv;
 	}
 	
+	// For redirect to apply leave page
 	@GetMapping("/appleaveemp")
 	public String applyLeaveEmp(HttpServletRequest request) {
 		int empid=Integer.parseInt(request.getParameter("empid"));
@@ -64,6 +67,7 @@ public class EmployeeController {
 		return "AppLeaveEmp.jsp";
 	}
 	
+	// For apply leave
 	@GetMapping("/leaveemp")
 	public ModelAndView applyLeave(Applyleave aleave,HttpSession session) {
 		ModelAndView mv=new ModelAndView();
@@ -80,6 +84,7 @@ public class EmployeeController {
 		return mv;
 	}
 	
+	// For redirect leave history
 	@GetMapping("/empbalhistoryE")
 	public String empBalHistory(HttpServletRequest request){
 		int empid=Integer.parseInt(request.getParameter("empid"));
@@ -88,6 +93,8 @@ public class EmployeeController {
 		return "LeaveHistoryE.jsp";
 		
 	}
+	
+	// For view project details
 	@GetMapping("/viewprojectemp")
 	public ModelAndView viewProjectEmp(HttpServletRequest req) {
 		int empid=Integer.parseInt(req.getParameter("empid"));
@@ -100,10 +107,13 @@ public class EmployeeController {
 		return mv;
 	}
 	
+	// For redirect to reset password
 	@GetMapping("resetpasse")
 	public ModelAndView resetPassE(HttpServletRequest req) {
 		return new ModelAndView("ResetPassEmp.jsp");
 	}
+	
+	// For reset password
 	@PostMapping("/resetpassemp")
 	public ModelAndView resetPassEmp(HttpServletRequest req,HttpSession session)
 	{

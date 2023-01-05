@@ -23,11 +23,13 @@ public class LoginController {
 	@Autowired
 	EmployeeRepository repository;
 	
+	// For redirct to login page
 	@GetMapping("/")
 	public String welcome() {
 		return "login.jsp";
 	}
 	
+	// For authenticate username, password and logn the user
 	@PostMapping("/login")
 	public ModelAndView loginUser(@RequestParam("username") String username,@RequestParam("password") String password,HttpSession session) {
 		ModelAndView mv=new ModelAndView();
@@ -37,7 +39,10 @@ public class LoginController {
 			session.setAttribute("message", "*Invalid Credentials");
 			return new ModelAndView("login.jsp");
 		}
+		
 		else {
+				// For Admin login
+			
 				if((employee.getRole()).equals("Admin")) {
 				session.setAttribute("empid", employee.getEmpid());
 				mv.setViewName("AdminDashboard.jsp");
@@ -45,6 +50,7 @@ public class LoginController {
 				
 				return mv;
 			}
+			// For Employee login
 			else if((employee.getRole()).equals("Employee")) {
 				session.setAttribute("empid", employee.getEmpid());
 				mv.setViewName("EmployeeDashboard.jsp");
@@ -52,7 +58,7 @@ public class LoginController {
 				return mv;
 				
 			}
-			
+			// For Manager login
 			else if((employee.getRole()).equals("Manager")) {
 				session.setAttribute("empid", employee.getEmpid());
 				mv.setViewName("ManagerDashboard.jsp");
@@ -65,6 +71,7 @@ public class LoginController {
 		}
 	}
 	
+	// For logout and end session
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		if (session != null) {
