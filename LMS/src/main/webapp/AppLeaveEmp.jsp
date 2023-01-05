@@ -100,7 +100,7 @@ h6{
     <div >
      <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
         <div class="container-fluid">
-          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardM?empid=${empid}"><b>Leave Management</b></a>
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardE?empid=${empid}"><b>Leave Management</b></a>
        <div class="d-flex">
          <a href="dashboardE?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
                  <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>

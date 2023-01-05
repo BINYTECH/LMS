@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ max-height: 33rem;
 padding: 0% 10%;
 }
 .scroll1{
-  height:80vh;
+  height:90vh;
   overflow: scroll;
 }
 .scroll1::-webkit-scrollbar{
@@ -98,10 +98,10 @@ h6{
     }
     %>
     <div >
-   <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
+     <nav class="navbar navbar-expand-lg bg-light shadow-lg " >
         <div class="container-fluid">
-          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardE?empid=${empid}"><b>Leave Management</b></a>
-          <div class="d-flex">
+          <a class="navbar-brand ms-2 " style="color: #8424bd; font-size: 1.4rem;" href="dashboardM?empid=${empid}"><b>Leave Management</b></a>
+       <div class="d-flex">
          <a href="dashboardE?empid=${empid}" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
                  <i class="bi bi-houses-fill logicon"></i><span style="color: #8424BC;">Home</span></a>
              <a href="logout" class="navbar-brand " style=" display: flex; color: #f9fafb;font-size: 18px;" >
@@ -112,20 +112,77 @@ h6{
 
         <div class="fbody">
            
-        <div >
+        <div class="scroll1" >
         <div class="mt-2 d-flex justify-content-end  w-75" style="margin-left: 15%;">
-        	<div class="">
-                <a href="viewbalanceleave?empid=<c:out value='${employee.empid}'/>" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave Balance</a>                               
-                <a href="empbalhistoryE?empid=<c:out value='${employee.empid}'/>" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave History</a>                               
-                 
+        	<div >
+                <a href="empbalhistory?empid=<c:out value='${employee.empid}'/>" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave History</a>                               
+                
             </div>
 		</div>
         <div class="mt-4" style="float:left;">
-            <a href="EmployeeDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
+            <a href="EmployeeDashboard" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
              <i class="bi bi-arrow-left-circle-fill "></i></a>
              </div>
+             <div class="container-fluid content" style=" width:fit-content;">
+              <div class="col mt-4 mb-4  border border-1 p-2  " style="  border-radius: 10px;">
+           
+               
+                <div class="card-group ">
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Sick Leave</h5>
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.sickleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Casual Leave</h5>
+         
+                  <h6 class="card-text"  style="color:black">Pending : ${bleave.casualleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Personal Leave</h5>
+                 
+          
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.personalleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Marriage Leave</h5>
+               
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.marriageleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Adoption Leave</h5>
+                 
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.adoptionleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Paternity Leave</h5>
+                  
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.paternityleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Maternity Leave</h5>
+                 
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.maternityleave}</h6>
+                </div>
+              </div>
+            </div>
+              </div></div>
             <div class="container-fluid content" style=" width:fit-content;">
-                     <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 scroll1 " style="padding:10px 70px;border-radius: 10px;">
+              
+             
+                     <div class="col mt-4 mb-4 shadow-sm bg-light border border-1  " style="padding:10px 70px;border-radius: 10px;">
                     <form action="leaveemp" class="row g-3 needs-validation"  name="addForm" style="padding: 20px; padding-top: 0;" onsubmit="return formValidate()">
                         <h1 align="center" style="color: #8424BC;">Apply Leave</h1>
                         
@@ -190,11 +247,13 @@ h6{
         </div>
         </div>
     </div>
-	
+
+   
     <!-- javascript validation -->
     <script type="text/javascript">
    		const pp=document.referrer;
    		document.getElementById("back").href=pp;   
+   		alert(${bleave})
    		
       function getTDays(){
          
@@ -233,13 +292,14 @@ h6{
         var reason=document.getElementById("lname").value;
         var t_date1=document.forms["addForm"]["t_date"].value;
         var f_date1=document.forms["addForm"]["f_date"].value; 
-       
+        
         var to1=new Date(t_date1);
         var from1=new Date(f_date1);
-        var today=new Date().setHours(0,0,0,0); 
+        var today=new Date().setHours(0,0,0,0);  
         var day3 = new Date(t_date1).getUTCDay();
         var day2 = new Date(f_date1).getUTCDay();
-
+       
+        
         weekend=false;
         // tds is time difference and dds is day difference between two dates
         //1 second=1000 milliseconds
@@ -253,7 +313,7 @@ h6{
           }
           to1.setDate(to1.getDate()+1);
         }
-        
+       
 
         //leave reason
 
@@ -264,9 +324,9 @@ h6{
             document.getElementById("vlname").innerHTML="";
             
         }
-
+        
         //form date 
-
+		 
         if(t_date1==""){
             document.getElementById("vt_date").innerHTML="*please enter date";
             status=false;
@@ -282,7 +342,7 @@ h6{
         else{
               document.getElementById("vt_date").innerHTML="";
             }
-        
+      
         // to Date
         if(f_date1==""){
             document.getElementById("vf_date").innerHTML="*please enter date";
@@ -314,7 +374,7 @@ h6{
        else{
           document.getElementById("vf_date").innerHTML="";
         }
-        
+       
         if(reason=="Maternity Leave" && dds>${bleave.maternityleave}){
         	document.getElementById("vtdays").innerHTML="*You have only "+${bleave.maternityleave}+" Maternity Leaves left.";
         	status=false;
@@ -346,16 +406,12 @@ h6{
         else{
         	document.getElementById("vtdays").innerHTML="";
         }
-        
-        
-        
         return status;
         
       }
 
      
       </script> 
-    
     
     
 

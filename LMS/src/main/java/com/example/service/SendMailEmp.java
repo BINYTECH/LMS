@@ -22,7 +22,7 @@ public class SendMailEmp {
 		
 		SimpleMailMessage message =new SimpleMailMessage();
 		String emailbody="Congratulations Your Employee Account is Created Successfully..! \nYour UserID Password is :\n"+"Username : "+username+"\nPassword : "+password;
-		message.setFrom("awhaleakash123@gmail.com");
+		message.setFrom("amitkumaryadav855@gmail.com");
 		message.setTo(toEmail);
 		message.setText(emailbody);
 		message.setSubject("LMS Portal");
@@ -36,7 +36,7 @@ public class SendMailEmp {
 		
 		SimpleMailMessage message =new SimpleMailMessage();
 		String emailbody="Dear " + name +"\n"+messagebody;
-		message.setFrom("awhaleakash123@gmail.com");
+		message.setFrom("amitkumaryadav855@gmail.com");
 		message.setTo(toEmail);
 		message.setText(emailbody);
 		message.setSubject("LMS Portal");
@@ -50,7 +50,7 @@ public class SendMailEmp {
 		Employee employee1=repository.getReferenceByName(name);
 		SimpleMailMessage message =new SimpleMailMessage();
 		String emailbody="Dear " + name +"\n"+messagebody;
-		message.setFrom("awhaleakash123@gmail.com");
+		message.setFrom("amitkumaryadav855@gmail.com");
 		message.setTo(employee1.getEmail());
 		message.setText(emailbody);
 		message.setSubject("LMS Portal");

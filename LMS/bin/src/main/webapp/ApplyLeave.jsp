@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ max-height: 33rem;
 padding: 0% 10%;
 }
 .scroll1{
-  height:80vh;
+  height:90vh;
   overflow: scroll;
 }
 .scroll1::-webkit-scrollbar{
@@ -112,10 +112,9 @@ h6{
 
         <div class="fbody">
            
-        <div >
+        <div class="scroll1" >
         <div class="mt-2 d-flex justify-content-end  w-75" style="margin-left: 15%;">
         	<div >
-                <a href="viewbalanceleave?empid=<c:out value='${employee.empid}'/>" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave Balance</a>                               
                 <a href="empbalhistory?empid=<c:out value='${employee.empid}'/>" class="btn btn-purple " style="text-decoration: none;font-size: 1.1rem;border-radius: 25px">Leave History</a>                               
                 
             </div>
@@ -124,8 +123,66 @@ h6{
             <a href="ManagerDashboard.jsp" id="back" class="navbar-brand" style="display: flex;color:#8424bd">
              <i class="bi bi-arrow-left-circle-fill "></i></a>
              </div>
+             <div class="container-fluid content" style=" width:fit-content;">
+              <div class="col mt-4 mb-4  border border-1 p-2  " style="  border-radius: 10px;">
+           
+               
+                <div class="card-group ">
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Sick Leave</h5>
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.sickleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Casual Leave</h5>
+         
+                  <h6 class="card-text"  style="color:black">Pending : ${bleave.casualleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Personal Leave</h5>
+                 
+          
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.personalleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Marriage Leave</h5>
+               
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.marriageleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Adoption Leave</h5>
+                 
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.adoptionleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Paternity Leave</h5>
+                  
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.paternityleave}</h6>
+                </div>
+              </div>
+              <div class="card" style="width: 10rem">
+                <div class="card-body">
+                  <h5 class="card-title">Maternity Leave</h5>
+                 
+                  <h6 class="card-text" style="color:black">Pending : ${bleave.maternityleave}</h6>
+                </div>
+              </div>
+            </div>
+              </div></div>
             <div class="container-fluid content" style=" width:fit-content;">
-                     <div class="col mt-4 mb-4 shadow-sm bg-light border border-1 scroll1 " style="padding:10px 70px;border-radius: 10px;">
+              
+             
+                     <div class="col mt-4 mb-4 shadow-sm bg-light border border-1  " style="padding:10px 70px;border-radius: 10px;">
                     <form action="appleave" class="row g-3 needs-validation"  name="addForm" style="padding: 20px; padding-top: 0;" onsubmit="return formValidate()">
                         <h1 align="center" style="color: #8424BC;">Apply Leave</h1>
                         
@@ -196,6 +253,7 @@ h6{
     <script type="text/javascript">
    		const pp=document.referrer;
    		document.getElementById("back").href=pp;   
+   		alert(${bleave})
    		
       function getTDays(){
          
@@ -255,7 +313,7 @@ h6{
           }
           to1.setDate(to1.getDate()+1);
         }
-        
+       
 
         //leave reason
 
